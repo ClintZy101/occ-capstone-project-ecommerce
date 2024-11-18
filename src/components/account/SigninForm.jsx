@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "./Input";
 import { handleLogin } from "../../utils/useAuthHook";
 import { useNavigate } from "react-router-dom";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -46,6 +47,7 @@ const Signin = () => {
       >
         Signin
       </button>
+      <GoogleSignInButton />
     </form>
   );
 };
