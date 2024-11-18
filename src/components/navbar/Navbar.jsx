@@ -36,7 +36,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
       <div
         className={`${
           bannerIsHidden ? "-translate-y-8" : ""
-        } w-full py-2 bg-white text-black flex justify-between  mx-auto px-5  items-center   transform transition-transform duration-500 ease-in-out shadow-md`}
+        } w-full py-2 bg-white text-customBrown-darkest flex justify-between  mx-auto px-5  items-center   transform transition-transform duration-500 ease-in-out shadow-md `}
       >
         <Link to={"/"}>
           <span className="flex items-center space-x-2">
@@ -69,12 +69,15 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
             <PiShoppingCartSimpleThin className="text-2xl" />
           </Link>
           {user ? (
-            <div onClick={signOut} className="relative group flex space-x-5">
-              <div className="hidden group-hover:grid gap-5 absolute -bottom-28 right-0 p-2  rounded-lg bg-gray-100">
+            <div  className="relative group flex ">
+              {/* Dropdown */}
+              <div className="hidden group-hover:grid gap-5 absolute -bottom-32 right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest">
                 <p>Signed In as:
                 <br />
                 {user.email}</p>
-                <span className="cursor-pointer bg-customBrown text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300 text-center">
+                <span 
+                onClick={signOut}
+                className="cursor-pointer bg-customBrown text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300 text-center">
                 Logout
               </span>
               </div>

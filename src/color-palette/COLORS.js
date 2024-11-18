@@ -2,3 +2,4 @@
 export const primary = "#B99976"
 export const  secondary = "#D2B48C"
 export const  tertiary = "#E5D3B3"
+// dark: #664229
