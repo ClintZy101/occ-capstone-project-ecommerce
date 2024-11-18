@@ -11,7 +11,7 @@ console.log(user, loading)
     <AuthProvider>
       <div className="mt-[200px]">
         {loading && <div>Loading</div>}
-        {user ? <p>Welcome, {user.email}</p> : <p>Please log in</p>}
+        {/* {user && <p>Welcome, {user.email}</p> } */}
       </div>
     </AuthProvider>
   );

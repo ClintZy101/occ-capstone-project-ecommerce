@@ -7,6 +7,7 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { useAuthStore } from "../../store/useAuthStore";
 import { handleLogout } from "../../utils/useAuthHook";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
+import { truncateBeforeChar } from "../../utils/helpers";
 
 export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const { cartItems } = useCartStore();
@@ -20,6 +21,17 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     handleLogout();
     window.location.reload();
   };
+  const[truncatedEmail, setTruncatedEmail] = useState(null)
+
+
+useEffect(()=>{
+if(user){
+  let result =truncateBeforeChar(user.email, "@")
+  setTruncatedEmail(result)
+  console.log(result)
+}
+},[])
+ 
 
   return (
     <div className="sticky top-0 z-50">
@@ -82,12 +94,14 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
               </span>
               </div>
               
-              <div className="cursor-pointer text-center">
+              <div className="cursor-pointer text-center flex items-center space-x-2 border border-customBrown-dark rounded-md pr-2">
                 <img
                   src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
                   alt=""
-                  className="w-10 h-10"
+                  className="w-10 h-10 rounded-full"
                 />
+                <p className="text-xs">Welcome, <br /> {truncatedEmail}</p>
+                
               </div>
             </div>
           ) : (
