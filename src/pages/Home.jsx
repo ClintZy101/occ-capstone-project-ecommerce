@@ -5,6 +5,9 @@ import { useAuthStore } from "../store/useAuthStore";
 
 import Hero from "../components/hero/Hero";
 import TopSeller from "../components/sections/TopSeller";
+import Gallery from "../components/gallery/ProductGallery";
+import Crumblite from "../components/sections/Crumblite";
+import SweetReview from "../components/sections/SweetReview";
 
 
 export default function Home(){
@@ -18,9 +21,10 @@ export default function Home(){
         {/* Hero Landing Page */}
       <Hero />
       </div>
-      {/* Top Seller */}
-      {/* <div className="h-[50px]"></div> */}
       <TopSeller />
+      <Crumblite />
+      <SweetReview />
+
     </AuthProvider>
   );
 };

@@ -7,6 +7,7 @@ import Sidebar from "./components/navbar/Sidebar";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Footer from "./footer/Footer";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -31,7 +32,7 @@ function App() {
         <Route path="/shop/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} /> */}
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

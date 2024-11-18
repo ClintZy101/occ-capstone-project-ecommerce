@@ -48,7 +48,7 @@ console.log(truncatedEmail)
       {/* main navbar */}
       <div
         className={`${
-          bannerIsHidden ? "-translate-y-8" : ""
+          bannerIsHidden ? "-translate-y-10" : ""
         } w-full py-2 bg-white text-customBrown-darkest flex justify-between  mx-auto px-5  items-center   transform transition-transform duration-500 ease-in-out shadow-md `}
       >
         <Link to={"/"}>
