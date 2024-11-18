@@ -1,19 +1,38 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import scrollHook from "./utils/scrollHook";
 import Navbar from "./components/navbar/Navbar";
+// Supports weights 300-800
+import '@fontsource-variable/open-sans';
+import Sidebar from "./components/navbar/Sidebar";
+import { useState } from "react";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+
 function App() {
   const { bannerIsHidden } = scrollHook();
+  const [sidebarIsShown, setSideBarIsShown] = useState(false);
+  const handleSidebar = () => {
+    setSideBarIsShown(!sidebarIsShown);
+  };
+  const location = useLocation();
+  const shouldShowNavbar = location.pathname !== "/login";
   return (
-    <Router>
-      <Navbar bannerIsHidden={bannerIsHidden} />
-      {/* <Routes>
+    <>
+     {shouldShowNavbar && (
+        <>
+          <Navbar bannerIsHidden={bannerIsHidden} sidebarIsShown={sidebarIsShown} handleSidebar={handleSidebar} />
+          <Sidebar sidebarIsShown={sidebarIsShown} handleSidebar={handleSidebar} />
+        </>
+      )}
+      <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/shop" element={<Shop />} />
         <Route path="/shop/product/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart />} /> */}
       </Routes>
-      <Footer /> */}
-    </Router>
+      {/* <Footer /> */}
+    </>
   );
 }
 
