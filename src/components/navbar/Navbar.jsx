@@ -28,8 +28,9 @@ useEffect(()=>{
 if(user){
   let result =truncateBeforeChar(user.email, "@")
   setTruncatedEmail(result)
-  console.log(result)
+ 
 }
+console.log(truncatedEmail)
 },[])
  
 

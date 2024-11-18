@@ -1,11 +1,11 @@
-const cookies = [
+export const cookies = [
   {
     id: 1,
     name: "Combo Box",
     img_src:
       "https://static.wixstatic.com/media/c837a6_b84460d516464a4a9e3b53bc9a4025f0~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_b84460d516464a4a9e3b53bc9a4025f0~mv2.jpeg",
     price: 32,
-    categories: ["combo_boxes", "bestseller"],
+    categories: ["combo_boxes", ""],
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const cookies = [
     img_src:
       "https://static.wixstatic.com/media/c837a6_79bed828b1dd47bda3fa43cdc2920f0d~mv2.jpg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_79bed828b1dd47bda3fa43cdc2920f0d~mv2.jpg",
     price: 32,
-    categories: ["bestseller"],
+    categories: [""],
   },
   {
     id: 6,
@@ -37,7 +37,7 @@ const cookies = [
     img_src:
       "https://static.wixstatic.com/media/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg",
     price: 32,
-    categories: ["bestseller"],
+    categories: [""],
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const cookies = [
     img_src:
       "https://static.wixstatic.com/media/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg",
     price: 32,
-    categories: ["bestseller"],
+    categories: [""],
   },
   {
     id: 10,
@@ -64,3 +64,4 @@ const cookies = [
     categories: ["bestseller"],
   },
 ];
+
