@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from '../components/sidebar-shopboxes/Sidebar'
 import Gallery from '../components/gallery/Gallery'
 import { cookies } from '../data/productData'
@@ -7,6 +7,7 @@ export default function ShopBoxes() {
     const [selectedCategory, setSelectedCategory] = useState("allproducts")
     const [categoryName, setCategoryName] = useState("All Products")
     const [productsInCategory, setProductsInCategory] = useState(cookies)
+
 
     const handleCategory = (category) => {
         setSelectedCategory(category);
@@ -41,9 +42,9 @@ export default function ShopBoxes() {
 console.log(productsInCategory)
   return (
     <div className='flex'>
-        <Sidebar handleCategory={handleCategory}/>
+        <Sidebar handleCategory={handleCategory} activeCategory={selectedCategory}/>
         <div>
-            <Gallery products={productsInCategory}  bgColor={"bg-customBrown"} category={categoryName}/>
+            <Gallery products={productsInCategory}  bgColor={"bg-customBrown"} category={categoryName} />
         </div>
     </div>
   )
