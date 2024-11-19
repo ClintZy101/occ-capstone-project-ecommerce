@@ -5,7 +5,7 @@ import { useAuthStore } from "../store/useAuthStore";
 
 import Hero from "../components/hero/Hero";
 import TopSeller from "../components/sections/TopSeller";
-import Gallery from "../components/gallery/ProductGallery";
+import Gallery from "../components/gallery/Gallery";
 import Crumblite from "../components/sections/Crumblite";
 import SweetReview from "../components/sections/SweetReview";
 

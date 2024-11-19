@@ -1,5 +1,5 @@
 import React from 'react'
-import Gallery from '../gallery/ProductGallery'
+import Gallery from '../gallery/Gallery'
 import { cookies } from '../../data/productData'
 
 export default function TopSeller() {

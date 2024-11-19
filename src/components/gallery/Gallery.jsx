@@ -11,7 +11,7 @@ export default function Gallery({ products, bgColor, category }) {
   return (
     <div className=" p-5 pb-20  text-customBrown-light">
       <h1 className=" text-customBrown-darkest text-2xl mb-5 font-bold">{category}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-5 justify-center items-center ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 justify-center items-center ">
         {products.map((product, index) => (
           <div
             key={product.id}

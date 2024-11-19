@@ -8,6 +8,7 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Footer from "./footer/Footer";
+import ShopBoxes from "./pages/ShopBoxes";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -28,8 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/shop" element={<Shop />} />
-        <Route path="/shop/product/:id" element={<SingleProduct />} />
+        <Route path="/shopboxes" element={<ShopBoxes />} />
+        {/* <Route path="/shop/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} /> */}
       </Routes>
       <Footer />
