@@ -129,7 +129,7 @@ export const cookies = [
     prod_desc: "A zesty delight for lemon lovers! These cookies are infused with tangy lemon flavor and topped with a delicate meringue touch, offering the perfect balance of sweetness and zestiness.",
   },
   {
-    id: 6,
+    id: 5,
     name: "Pistachio Mirage",
     img_src:
       "https://static.wixstatic.com/media/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg",
@@ -140,7 +140,7 @@ export const cookies = [
     prod_desc: "Dive into a nutty paradise with our Pistachio Mirage cookies. They’re loaded with real pistachios, creating a rich and flavorful treat perfect for every nut lover's cravings.",
   },
   {
-    id: 7,
+    id: 6,
     name: "Macadamia Heaven",
     img_src:
       "https://static.wixstatic.com/media/c837a6_ea9e317261f5488b89dcf745a62149b3~mv2.jpg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_ea9e317261f5488b89dcf745a62149b3~mv2.jpg",
@@ -151,7 +151,7 @@ export const cookies = [
     prod_desc: "A heavenly blend of buttery macadamia nuts and smooth white chocolate chunks. These cookies are as luxurious as they sound, delivering a taste that feels like paradise.",
   },
   {
-    id: 9,
+    id: 7,
     name: "Upside Downs",
     img_src:
       "https://static.wixstatic.com/media/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg",
@@ -162,7 +162,7 @@ export const cookies = [
     prod_desc: "Turn your cookie expectations upside down with this unique flavor! Perfectly balanced between adventurous and familiar, these cookies redefine your snacking experience in the best possible way.",
   },
   {
-    id: 10,
+    id: 8,
     name: "The Classics",
     img_src:
       "https://static.wixstatic.com/media/c837a6_010a6939ff924576815c13650ba50559~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_010a6939ff924576815c13650ba50559~mv2.jpeg",
