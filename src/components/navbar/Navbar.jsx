@@ -30,7 +30,7 @@ if(user){
   setTruncatedEmail(result)
  
 }
-console.log(truncatedEmail)
+// console.log(truncatedEmail)
 },[])
  
 

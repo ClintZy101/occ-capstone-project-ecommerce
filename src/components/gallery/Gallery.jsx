@@ -1,15 +1,13 @@
 import React from "react";
 import { FaPesoSign } from "react-icons/fa6";
-// import useProduct from "../../store/useProduct";
 import { Link } from "react-router-dom";
 
 
 export default function Gallery({ products, bgColor, category }) {
-//   const{product, setProduct} =useProduct()
 
-
+// bg-[#cfad96]
   return (
-    <div className=" p-5 pb-20  text-customBrown-light">
+    <div className=" p-5 pb-20  text-customBrown-light ">
       <h1 className=" text-customBrown-darkest text-2xl mb-5 font-bold">{category}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 justify-center items-center ">
         {products.map((product, index) => (
@@ -18,7 +16,7 @@ export default function Gallery({ products, bgColor, category }) {
             className={` overflow-hidden ${bgColor} p-4 grid relative  mx-auto`}
           >
             <div className=" overflow-hidden rounded ">
-              <Link to={`/shopboxes/${product.name}`}>
+              <Link to={`/shopboxes/${product.name}`} state={product}>
               <img
                 src={product.img_src}
                 alt={product.name}

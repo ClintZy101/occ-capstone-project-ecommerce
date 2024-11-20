@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Footer from "./footer/Footer";
 import ShopBoxes from "./pages/ShopBoxes";
+import SingleProduct from "./pages/SingleProduct";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -30,8 +31,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/shopboxes" element={<ShopBoxes />} />
-        {/* <Route path="/shop/product/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/shopboxes/:id" element={<SingleProduct />} />
+        {/* <Route path="/cart" element={<Cart />} />  */}
       </Routes>
       <Footer />
     </>
