@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
 import ReviewOrder from "../components/cart-page/ReviewOrder";
+import DeliveryAddress from "../components/cart-page/DeliveryAddress";
 
 export default function CartPage() {
   const {
@@ -42,7 +43,7 @@ export default function CartPage() {
   }, [getTotalPrice()]);
   console.log(additionalDeliveryFee)
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest">
+    <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest">
         <ReviewOrder 
         handleAdditionalDeliveryFee={handleAdditionalDeliveryFee}
         cartItems={cartItems}
@@ -55,7 +56,7 @@ export default function CartPage() {
         additionalDeliveryFee={additionalDeliveryFee}
         getTotalPrice={getTotalPrice}
         />
-      <div></div>
+      <DeliveryAddress />
       <div></div>
     </div>
   );

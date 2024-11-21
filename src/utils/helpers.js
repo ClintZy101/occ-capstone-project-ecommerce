@@ -7,4 +7,9 @@ export function truncateBeforeChar(str, char) {
     // Return the substring before the character
     return str.substring(0, index);
   }
+
+  export function extractInsideParentheses(input) {
+    const match = input.match(/\(([^)]+)\)/); // Regular expression to match text inside ()
+    return match ? match[1] : input; // Return the first group if found, else null
+  }
   
