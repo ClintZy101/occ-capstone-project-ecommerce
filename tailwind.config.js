@@ -7,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        customBlue: "#B99976", // Example custom color
         customBrown: {
           light: '#E5D3B3',
           DEFAULT: '#D2B48C',

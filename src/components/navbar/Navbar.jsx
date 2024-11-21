@@ -43,7 +43,7 @@ if(user){
         } bg-customBrown-dark w-full h-10 text-center text-white flex  items-center justify-center  transform transition-transform duration-1000 ease-in-out font-thin`}
       >
         {" "}
-        FREE SHIPPING FOR ORDERS OVER &#8369;150
+        FREE SHIPPING FOR ORDERS OVER &#8369;1000
       </div>
       {/* main navbar */}
       <div

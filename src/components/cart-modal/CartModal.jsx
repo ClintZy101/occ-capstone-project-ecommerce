@@ -5,6 +5,7 @@ import QuantityButtons from "../buttons/QuantityButtons";
 import { CiTrash } from "react-icons/ci";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPesoSign } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
   const {
@@ -85,7 +86,7 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
               </div>
               <span
                 onClick={() => removeFromCart(item.id)}
-                className="cursor-pointer "
+                className="cursor-pointer self-start"
               >
                 {" "}
                 <CiTrash className="text-2xl hover:text-red-500 " />
@@ -106,9 +107,12 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
           {/* <button className="w-5/6 bg-customBrown-dark hover:bg-customBrown-darkest text-white h-10">
             View Cart
           </button> */}
-          <button className="w-5/6 bg-white h-10 hover:border border-customBrown-darkest">
-            Checkout
-          </button>
+          <Link
+            to={"/cart"}
+            className="w-5/6 bg-white h-10 hover:border border-customBrown-darkest text-center items-center flex justify-center"
+          >
+            <p> Checkout</p>
+          </Link>
         </div>
       </div>
 

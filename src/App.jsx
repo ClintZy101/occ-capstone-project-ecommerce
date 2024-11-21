@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import scrollHook from "./utils/scrollHook";
 import Navbar from "./components/navbar/Navbar";
 // Supports weights 300-800
-import '@fontsource-variable/open-sans';
+import "@fontsource-variable/open-sans";
 import Sidebar from "./components/navbar/Sidebar";
 import { useState } from "react";
 import Home from "./pages/Home";
@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Footer from "./footer/Footer";
 import ShopBoxes from "./pages/ShopBoxes";
 import SingleProduct from "./pages/SingleProduct";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -21,10 +22,17 @@ function App() {
   const shouldShowNavbar = location.pathname !== "/login";
   return (
     <>
-     {shouldShowNavbar && (
+      {shouldShowNavbar && (
         <>
-          <Navbar bannerIsHidden={bannerIsHidden} sidebarIsShown={sidebarIsShown} handleSidebar={handleSidebar} />
-          <Sidebar sidebarIsShown={sidebarIsShown} handleSidebar={handleSidebar} />
+          <Navbar
+            bannerIsHidden={bannerIsHidden}
+            sidebarIsShown={sidebarIsShown}
+            handleSidebar={handleSidebar}
+          />
+          <Sidebar
+            sidebarIsShown={sidebarIsShown}
+            handleSidebar={handleSidebar}
+          />
         </>
       )}
       <Routes>
@@ -32,7 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/shopboxes" element={<ShopBoxes />} />
         <Route path="/shopboxes/:id" element={<SingleProduct />} />
-        {/* <Route path="/cart" element={<Cart />} />  */}
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
       <Footer />
     </>
