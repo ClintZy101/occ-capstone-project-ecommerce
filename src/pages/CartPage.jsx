@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
 import ReviewOrder from "../components/cart-page/ReviewOrder";
 import DeliveryAddress from "../components/cart-page/DeliveryAddress";
+import PaymentMethod from "../components/payment-method/PaymentMethod";
 
 export default function CartPage() {
   const {
@@ -57,6 +58,7 @@ export default function CartPage() {
         getTotalPrice={getTotalPrice}
         />
       <DeliveryAddress />
+      <PaymentMethod total={total}/>
       <div></div>
     </div>
   );

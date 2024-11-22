@@ -1,5 +1,7 @@
 // https://psgc.cloud/api/regions
 
+export const API_URL = "https://psgc.cloud/api";
+
 export const philippineRegions = [
 	{
 		"id": 1,
@@ -121,3 +123,67 @@ export const philippineRegions = [
 		"code": "1900000000"
 	}
 ]
+
+// export const ncrCities = [
+//     { name: "Caloocan City", code: "137501" },
+//     { name: "Las Piñas City", code: "137601" },
+//     { name: "Makati City", code: "137602" },
+//     { name: "Malabon City", code: "137502" },
+//     { name: "Mandaluyong City", code: "137603" },
+//     { name: "Manila", code: "137501" },
+//     { name: "Marikina City", code: "137604" },
+//     { name: "Muntinlupa City", code: "137605" },
+//     { name: "Navotas City", code: "137503" },
+//     { name: "Parañaque City", code: "137606" },
+//     { name: "Pasay City", code: "137607" },
+//     { name: "Pasig City", code: "137608" },
+//     { name: "Quezon City", code: "137607" },
+//     { name: "San Juan City", code: "137609" },
+//     { name: "Taguig City", code: "137610" },
+//     { name: "Valenzuela City", code: "137504" },
+//     { name: "Pateros", code: "137601" }
+//   ];
+
+
+export const ncrCities =[
+  { "name": "Caloocan City", "code": "137501" },
+  { "name": "Las Piñas City", "code": "137601" },
+  { "name": "Makati City", "code": "137602" },
+  { "name": "Malabon City", "code": "137502" },
+  { "name": "Mandaluyong City", "code": "137603" },
+  { "name": "Manila", "code": "137501" },
+  { "name": "Marikina City", "code": "137604" },
+  { "name": "Muntinlupa City", "code": "137605" },
+  { "name": "Navotas City", "code": "137503" },
+  { "name": "Parañaque City", "code": "137606" },
+  { "name": "Pasay City", "code": "137607" },
+  { "name": "Pasig City", "code": "137608" },
+  { "name": "Quezon City", "code": "137607" },
+  { "name": "San Juan City", "code": "137609" },
+  { "name": "Taguig City", "code": "137610" },
+  { "name": "Valenzuela City", "code": "137504" },
+  { "name": "Pateros", "code": "137601" }
+]
+  
+ const NCR = {
+    "cities": [
+      "Caloocan",
+      "Las Piñas",
+      "Makati",
+      "Malabon",
+      "Mandaluyong",
+      "Manila",
+      "Marikina",
+      "Muntinlupa",
+      "Navotas",
+      "Parañaque",
+      "Pasay",
+      "Pasig",
+      "Quezon City",
+      "San Juan",
+      "Taguig",
+      "Valenzuela"
+    ],
+    "municipality": ["Pateros"]
+  }
+  

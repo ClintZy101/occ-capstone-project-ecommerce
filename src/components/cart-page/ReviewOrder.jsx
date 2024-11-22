@@ -76,7 +76,7 @@ export default function ReviewOrder({
           </div>
           <div className="flex items-center justify-between border-t border-t-customBrown mt-4">
             <p className='font-semibold'>Total</p>
-            <p>{total}</p>
+            <p className='flex items-center'><FaPesoSign />{total}</p>
           </div>
         </div>
         {/* Delivery Options */}
