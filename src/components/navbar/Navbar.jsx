@@ -75,6 +75,9 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
           <Link to={"/contactus"}>
             <span className="">Contact Us</span>
           </Link>
+          <Link to={"/checkout"}>
+            <span className="">Checkout</span>
+          </Link>
         </div>
         <div className="space-x-5 items-center flex ">
           {/* <span className="w-[50px] overflow-hidden text-ellipsis"> {user.email} </span> */}
@@ -90,12 +93,19 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
           {user ? (
             <div className="relative group flex ">
               {/* Dropdown */}
-              <div className="hidden group-hover:grid gap-5 absolute -bottom-32 right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest">
-                <p>
-                  Signed In as:
+              <div className="hidden group-hover:grid gap-5 absolute -bottom-[200px] right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest">
+                <span className="border-b border-b-customBrown pb-2">
+                 <strong> Signed In as:</strong>
                   <br />
                   {user.email}
+                </span>
+                <Link to="/dashboard">
+                <p
+                className="cursor-pointer border border-customBrown  text-center py-2 hover:bg-customBrown rounded"
+                >
+                  Dashboard
                 </p>
+                </Link>
                 <span
                   onClick={signOut}
                   className="cursor-pointer bg-customBrown text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300 text-center"

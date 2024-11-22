@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Sidebar from '../components/sidebar-shopboxes/Sidebar'
+import Sidebar from '../components/sidebar-products/Sidebar'
 import Gallery from '../components/gallery/Gallery'
 import { cookies } from '../data/productData'
 
-export default function ShopBoxes() {
+export default function Products() {
     const [selectedCategory, setSelectedCategory] = useState("allproducts")
     const [categoryName, setCategoryName] = useState("All Products")
     const [productsInCategory, setProductsInCategory] = useState(cookies)
@@ -41,7 +41,7 @@ export default function ShopBoxes() {
     }, [selectedCategory]);
 console.log(productsInCategory)
   return (
-    <div className='flex'>
+    <div className='md:flex'>
         <Sidebar handleCategory={handleCategory} activeCategory={selectedCategory}/>
         <div>
             <Gallery products={productsInCategory}  bgColor={"bg-customBrown"} category={categoryName} />

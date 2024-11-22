@@ -8,11 +8,13 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Footer from "./footer/Footer";
-import ShopBoxes from "./pages/ShopBoxes";
+import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
 import Checkout from "./pages/Checkout";
 import CartModal from "./components/cart-modal/CartModal";
 import useCartModal from "./store/useCartModal";
+import Dashboard from "./pages/Dashboard";
+import ContactUs from "./pages/ContactUS";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -45,9 +47,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<ShopBoxes />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </>

@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 export default function Sidebar({ sidebarIsShown, handleSidebar }) {
   const links = [
     { name: "Home", link: "/" },
-    { name: "Shop Boxes", link: "/shopboxes" },
-    { name: "Gift Card", link: "/giftcard" },
+    { name: "Products", link: "/products" },
     { name: "Contact Us", link: "/contactus" },
+    { name: "Checkout", link: "/checkout" },
+   
   ];
 
   const navigate = useNavigate();
@@ -27,12 +28,12 @@ export default function Sidebar({ sidebarIsShown, handleSidebar }) {
       {/* Close Button */}
       <span
         onClick={handleSidebar}
-        className="absolute top-5 left-5 cursor-pointer text-3xl group"
+        className="absolute top-5 left-5 cursor-pointer text-3xl group z-50"
       >
         <RiCloseLargeFill className="transition-transform duration-300 group-hover:rotate-180" />
       </span>
-      <div className="place-items-center  bg-customBrown-dark text-white md:w-1/2  w-screen h-full ">
-        <div className="grid gap-10 mt-[100px]">
+      <div className="grid place-items-center  bg-customBrown-dark text-white md:w-1/2  w-screen h-full ">
+        <div className="grid gap-10 ">
           {links.map((link, index) => (
             <span
               key={index}
