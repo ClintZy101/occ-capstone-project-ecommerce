@@ -10,7 +10,9 @@ import Login from "./pages/Login";
 import Footer from "./footer/Footer";
 import ShopBoxes from "./pages/ShopBoxes";
 import SingleProduct from "./pages/SingleProduct";
-import CartPage from "./pages/CartPage";
+import Checkout from "./pages/Checkout";
+import CartModal from "./components/cart-modal/CartModal";
+import useCartModal from "./store/useCartModal";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -20,6 +22,7 @@ function App() {
   };
   const location = useLocation();
   const shouldShowNavbar = location.pathname !== "/login";
+  const {cartModalIsOpen, setCartModalIsOpen} = useCartModal();
   return (
     <>
       {shouldShowNavbar && (
@@ -35,12 +38,16 @@ function App() {
           />
         </>
       )}
+      <CartModal
+        cartModalIsOpen={cartModalIsOpen}
+        setCartModalIsOpen={setCartModalIsOpen}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/shopboxes" element={<ShopBoxes />} />
-        <Route path="/shopboxes/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/products" element={<ShopBoxes />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </>

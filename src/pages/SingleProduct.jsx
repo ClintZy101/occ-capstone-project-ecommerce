@@ -5,12 +5,15 @@ import QuantityButtons from "../components/buttons/QuantityButtons";
 import useCartStore from "../store/useCartLocalStorage";
 import AddToCartButton from "../components/buttons/AddToCartButton";
 import CartModal from "../components/cart-modal/CartModal";
+import useCartModal from "../store/useCartModal";
 
 export default function SingleProduct() {
   const location = useLocation();
   const cookie = location.state;
   const [quantity,setQuantity] = useState(1)
-  const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
+  // const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
+  const {cartModalIsOpen, addToCart} = useCartStore();
+  const { setCartModalIsOpen} = useCartModal();
 
    // Handle quantity increment and decrement
    const handleDecrement = () => {
@@ -20,14 +23,13 @@ export default function SingleProduct() {
   const handleIncrement = () => {
     setQuantity((prevQty) => prevQty + 1);
   };
-    const {addToCart} = useCartStore();
 
   // Prepare updated product and add it to cart
   const handleAddToCart = () => {
     const updatedProduct = { ...cookie, quantity };
     addToCart(updatedProduct);
     setCartModalIsOpen(true)
-    console.log(updatedProduct, cartModalIsOpen)
+    // console.log(updatedProduct, cartModalIsOpen)
   };
 
 
@@ -37,7 +39,7 @@ export default function SingleProduct() {
   };
   return (
     <div className="p-5 flex text-customBrown-dark space-x-2">
-      <CartModal cartModalIsOpen={cartModalIsOpen} setCartModalIsOpen={setCartModalIsOpen} />
+
       {/* image */}
       <div className="w-1/2">
         <img src={cookie.img_src} alt="" className="w-2/3 mx-auto" />

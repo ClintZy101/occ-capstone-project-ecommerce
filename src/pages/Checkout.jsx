@@ -4,7 +4,7 @@ import ReviewOrder from "../components/cart-page/ReviewOrder";
 import DeliveryAddress from "../components/cart-page/DeliveryAddress";
 import PaymentMethod from "../components/payment-method/PaymentMethod";
 
-export default function CartPage() {
+export default function Checkout() {
   const {
     cartItems,
     decrementQuantity,

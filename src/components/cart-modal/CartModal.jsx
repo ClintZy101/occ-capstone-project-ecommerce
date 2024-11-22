@@ -5,7 +5,7 @@ import QuantityButtons from "../buttons/QuantityButtons";
 import { CiTrash } from "react-icons/ci";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPesoSign } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
   const {
@@ -20,7 +20,13 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
     (total, item) => total + item.quantity,
     0
   );
-  console.log(cartItems);
+
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    setCartModalIsOpen(false);
+    navigate("/checkout");
+  };
+  // console.log(cartItems);
   return (
     <div
       className={`z-50 fixed top-0 right-0 w-screen h-full  flex    transform transition-all duration-300  ${
@@ -107,12 +113,12 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
           {/* <button className="w-5/6 bg-customBrown-dark hover:bg-customBrown-darkest text-white h-10">
             View Cart
           </button> */}
-          <Link
-            to={"/cart"}
-            className="w-5/6 bg-white h-10 hover:border border-customBrown-darkest text-center items-center flex justify-center"
-          >
+
+          <div 
+          onClick={handleNavigate}
+          className="w-5/6 bg-white h-10 hover:border border-customBrown-darkest text-center items-center flex justify-center cursor-pointer">
             <p> Checkout</p>
-          </Link>
+          </div>
         </div>
       </div>
 

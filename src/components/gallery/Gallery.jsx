@@ -16,7 +16,7 @@ export default function Gallery({ products, bgColor, category }) {
             className={` overflow-hidden ${bgColor} p-4 grid relative  mx-auto`}
           >
             <div className=" overflow-hidden rounded ">
-              <Link to={`/shopboxes/${product.name}`} state={product}>
+              <Link to={`/products/${product.name}`} state={product}>
               <img
                 src={product.img_src}
                 alt={product.name}

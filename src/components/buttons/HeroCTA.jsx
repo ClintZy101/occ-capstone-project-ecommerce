@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function HeroCTA({ text = "Shop Now", Icon }) {
   return (
-    <Link to={"/shopboxes"}>
+    <Link to={"/products"}>
       <button className="group inline-flex  items-center justify-center font-mono h-[50px]  bg-customBrown-dark rounded-full text-white px-5  hover:scale-105  transition-all duration-500 uppercase cursor-pointer place-self-center w-[200px]">
         <p className="group-hover:scale-75 transition-all duration-500">
           {text}
