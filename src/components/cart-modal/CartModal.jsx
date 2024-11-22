@@ -37,15 +37,15 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
     >
       {/* Cart Modal */}
       <div className="w-full md:w-1/2 px-5 bg-customBrown-light text-customBrown-darkest relative  ">
-        {/* Close Button */}
 
-        {/* header */}
+        {/* Header */}
         <div className="py-2 w-full  border-b border-b-customBrown bg-customBrown-dark absolute top-0 left-0  flex justify-between px-5 items-center ">
           <span className="flex space-x-3 items-center">
             <p className="font-semibold text-2xl italic">Cart </p>
             <p className="text-lg font-thin ">({totalQuantity} items)</p>
           </span>
 
+              {/* Close Button */}
           <span
             onClick={() => setCartModalIsOpen(false)}
             className=" z-50 cursor-pointer text-3xl group bg-customBrown-dark text-white rounded-full p-2"
@@ -53,8 +53,8 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
             <RiCloseLargeFill className="transition-transform duration-300 group-hover:rotate-180" />
           </span>
         </div>
-        {/* Single Item */}
-        <div className="overflow-y-auto md:max-h-[400px] max-h-[800px]">
+        {/* Cart Items */}
+        <div className="overflow-y-auto md:max-h-[400px] max-h-[800px] ">
           {cartItems.map((item) => (
             <div className="flex items-center  justify-around border-b border-b-customBrown w-full mt-20 pb-4 ">
               <div>
@@ -100,8 +100,8 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
             </div>
           ))}
         </div>
-        {/* Buttons  */}
-        <div className="fixed bottom-0 left-0 w-full  md:w-1/2 grid place-items-center gap-2 bg-customBrown py-5">
+        {/* Subtotal  */}
+        <div className="fixed bottom-0 left-0 w-full  md:w-1/2 grid place-items-center gap-2 bg-customBrown py-5 h-[120px]">
           <div className="flex items-center space-x-3 mb-2">
             <h2 className="font-semibold text-xl">Subtotal: </h2>
             <p className="flex items-center font-thin text-xl">
@@ -109,10 +109,6 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
               {getTotalPrice().toFixed(2)}
             </p>
           </div>
-
-          {/* <button className="w-5/6 bg-customBrown-dark hover:bg-customBrown-darkest text-white h-10">
-            View Cart
-          </button> */}
 
           <div 
           onClick={handleNavigate}
@@ -125,7 +121,7 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
       {/* half the page is blank, closes modal onclick */}
       <div
         onClick={() => setCartModalIsOpen(false)}
-        className="md:w-1/2 bg-customBrown-darkest opacity-50"
+        className="hidden md:flex md:w-1/2 bg-customBrown-darkest opacity-50"
       ></div>
     </div>
   );
