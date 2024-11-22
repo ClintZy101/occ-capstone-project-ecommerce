@@ -14,7 +14,7 @@ import Checkout from "./pages/Checkout";
 import CartModal from "./components/cart-modal/CartModal";
 import useCartModal from "./store/useCartModal";
 import Dashboard from "./pages/Dashboard";
-import ContactUs from "./pages/ContactUS";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
