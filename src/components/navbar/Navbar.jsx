@@ -16,6 +16,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     (total, item) => total + item.quantity,
     0
   );
+
   const {  setCartModalIsOpen } = useCartModal();
   const navigate = useNavigate();
   const { user } = useAuthStore();
@@ -78,9 +79,12 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
         <div className="space-x-5 items-center flex ">
           {/* <span className="w-[50px] overflow-hidden text-ellipsis"> {user.email} </span> */}
           <span 
-          className="cursor-pointer"
+          className="cursor-pointer relative"
           onClick={()=>setCartModalIsOpen(true)}>
             <PiShoppingCartSimpleThin className="text-2xl" />
+            <span className="w-6 h-6 absolute -top-2 -right-3 bg-yellow-400 rounded-full grid place-items-center">
+              <p>{totalQuantity}</p>
+            </span>
           </span>
 
           {user ? (
