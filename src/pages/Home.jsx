@@ -4,10 +4,10 @@ import AuthProvider from "../components/auth/AuthProvider";
 import { useAuthStore } from "../store/useAuthStore";
 
 import Hero from "../components/hero/Hero";
-import TopSeller from "../components/sections/TopSeller";
+import TopSeller from "../components/home-sections/TopSeller";
 import Gallery from "../components/gallery/Gallery";
-import Crumblite from "../components/sections/Crumblite";
-import SweetReview from "../components/sections/SweetReview";
+import Crumblite from "../components/home-sections/Crumblite";
+import SweetReview from "../components/home-sections/SweetReview";
 
 
 export default function Home(){

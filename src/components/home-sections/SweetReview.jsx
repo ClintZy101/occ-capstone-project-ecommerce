@@ -24,16 +24,16 @@ export default function SweetReview() {
   ];
   return (
     <div className="p-5">
-        <h2 className="font-bold text-2xl text-customBrown-darkest mb-5">Our Sweet Review</h2>
-    <div className="grid gap-2  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white ">
+        <h2 className="font-bold text-2xl text-customBrown-darkest mb-10">Our Sweet Review</h2>
+    <div className="grid md:gap-2 gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white ">
       {customerData.map((data, i) => (
-        <div key={i} className="bg-customBrown-darkest p-5 rounded mx-auto">
+        <div key={i} className="bg-customBrown-darkest p-5 rounded mx-auto relative">
           <div  className="flex items-center space-x-2 mb-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden">
-            <img src={data.img_src} alt={data.name} className="w-full h-auto rouded-full" />
+            <div className="w-14 h-14 rounded-full overflow-hidden -top-7 left-2 absolute">
+            <img src={data.img_src} alt={data.name} className="w-full h-auto rouded-full " />
             </div>
             
-            <p>{data.name}'s Review</p>
+            <p className="mt-2 font-semibold">{data.name}'s Review</p>
           </div>
           <p>“{data.review}”</p>
         </div>

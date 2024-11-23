@@ -15,11 +15,11 @@ const LoginPage = () => {
       <img src="/cookie.png" alt=""  className="w-[200px] h-[200px] bg-transparent"/>
      <h1 className="text-2xl font-extrabold text-customBrown-dark">Crumblite</h1>
       </div> */}
-      <div className="md:w-1/2 ">
+      <div className="md:w-1/2 min-h-screen">
         <img
           src="https://images.pexels.com/photos/28480668/pexels-photo-28480668/free-photo-of-relaxing-coffee-break-with-cookies.jpeg?auto=compress&cs=tinysrgb&w=800"
           alt=""
-          className="w-full h-full "
+          className="w-full min-h-[100vh] "
         />
       </div>
 
