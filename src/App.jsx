@@ -15,6 +15,7 @@ import CartModal from "./components/cart-modal/CartModal";
 import useCartModal from "./store/useCartModal";
 import Dashboard from "./pages/Dashboard";
 import ContactUs from "./pages/ContactUs";
+import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -27,6 +28,7 @@ function App() {
   const {cartModalIsOpen, setCartModalIsOpen} = useCartModal();
   return (
     <>
+    <ScrollToTop />
       {shouldShowNavbar && (
         <>
           <Navbar
