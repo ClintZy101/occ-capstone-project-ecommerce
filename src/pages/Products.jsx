@@ -44,7 +44,7 @@ console.log(productsInCategory)
     <div className='md:flex'>
         <Sidebar handleCategory={handleCategory} activeCategory={selectedCategory}/>
         <div>
-            <Gallery products={productsInCategory}  bgColor={"bg-customBrown"} category={categoryName} />
+            <Gallery products={productsInCategory}  bgColor={""} category={categoryName} />
         </div>
     </div>
   )

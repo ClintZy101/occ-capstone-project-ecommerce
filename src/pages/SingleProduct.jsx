@@ -6,6 +6,7 @@ import useCartStore from "../store/useCartLocalStorage";
 import AddToCartButton from "../components/buttons/AddToCartButton";
 import CartModal from "../components/cart-modal/CartModal";
 import useCartModal from "../store/useCartModal";
+import ReviewStars from "../components/reviews/ReviewStars";
 
 export default function SingleProduct() {
   const location = useLocation();
@@ -47,10 +48,11 @@ export default function SingleProduct() {
       {/* details */}
       <div className="w-1/2">
         <h2 className="text-3xl font-bold">{cookie.name}</h2>
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2">
           <Stars />
           <p className="font-thin text-xs">{cookie.review_count} reviews</p>
-        </div>
+        </div> */}
+        <ReviewStars cookie={cookie} />
         <p className="mt-5">{cookie.prod_desc}</p>
         <div className="mt-5">
           <p className="mb-2">Quantity</p>
