@@ -10,7 +10,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="md:flex justify-center items-center  bg-white ">
+    <div className="md:flex  relative justify-center items-center  bg-white ">
       {/* <div className="md:w-1/2 grid place-items-center">
       <img src="/cookie.png" alt=""  className="w-[200px] h-[200px] bg-transparent"/>
      <h1 className="text-2xl font-extrabold text-customBrown-dark">Crumblite</h1>
@@ -23,20 +23,22 @@ const LoginPage = () => {
         />
       </div>
 
-      <div className="md:w-1/2 p-5 ">
-        {isSignup ? (
-          <div className="w-full grid gap-2 justify-center">
-            <img src="/logo.png" alt="" className="mx-auto" />
-            <h1 className="text-3xl font-bold">Create an Account</h1>
-            <p className="text-center">Please Enter your details</p>
-          </div>
-        ) : (
-          <div className="w-full grid gap-2 justify-center">
-            <img src="/logo.png" alt="" className="mx-auto" />
-            <h1 className="text-3xl font-bold">Welcome Back!</h1>
-            <p className="text-center">Please Enter your details</p>
-          </div>
-        )}
+      <div className="md:w-1/2 w-full h-full p-10 absolute md:relative bg-black md:bg-white bg-opacity-50 top-0 ml-auto mr-auto z-50  ">
+        <div className="my-4 text-white md:text-black ">
+          {isSignup ? (
+            <div className="w-full grid gap-2 justify-center">
+              <img src="/logo.png" alt="" className="mx-auto" />
+              <h1 className="text-3xl font-bold">Create an Account</h1>
+              <p className="text-center">Please Enter your details</p>
+            </div>
+          ) : (
+            <div className="w-full grid gap-2 justify-center">
+              <img src="/logo.png" alt="" className="mx-auto" />
+              <h1 className="text-3xl font-bold">Welcome Back!</h1>
+              <p className="text-center">Please Enter your details</p>
+            </div>
+          )}
+        </div>
 
         {isSignup ? <Signup /> : <Signin />}
         <button
