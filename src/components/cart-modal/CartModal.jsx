@@ -56,7 +56,7 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
           </span>
         </div>
         {/* Cart Items */}
-        <div className="overflow-y-auto max-h-[400px] ">
+        <div className="overflow-y-auto md:max-h-[400px] max-h-[500px] ">
           {cartItems.map((item) => (
             <div className="flex items-center  justify-around border-b border-b-customBrown w-full mt-20 pb-4 ">
               <div>
