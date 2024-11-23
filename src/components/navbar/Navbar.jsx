@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useCartStore from "../../store/useCartLocalStorage";
 
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
@@ -17,7 +17,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     0
   );
 
-  const {  setCartModalIsOpen } = useCartModal();
+  const { setCartModalIsOpen } = useCartModal();
   const navigate = useNavigate();
   const { user } = useAuthStore();
   const signOut = () => {
@@ -26,6 +26,10 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
   };
   const [truncatedEmail, setTruncatedEmail] = useState(null);
 
+  const location = useLocation();
+  const pathname = location.pathname;
+  const [isActive, setIsActive] = useState("/");
+
   useEffect(() => {
     if (user) {
       let result = truncateBeforeChar(user.email, "@");
@@ -33,6 +37,24 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     }
     // console.log(truncatedEmail)
   }, []);
+
+  useEffect(() => {
+    switch (pathname) {
+      case "/":
+        setIsActive("/");
+        break;
+      case "/products":
+        setIsActive("/products");
+        break;
+      case "/contactus":
+        setIsActive("/contactus");
+        break;
+      case "/checkout":
+        setIsActive("/checkout");
+    }
+  }, [pathname]);
+
+  console.log(pathname, isActive)
 
   return (
     <div className="sticky top-0 z-50">
@@ -53,37 +75,39 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
       >
         <Link to={"/"}>
           <span className="flex items-center space-x-2">
-            <img src="/cookie.png" alt="" className="w-10 h-10" />
-            <p className="font-bold">Crumblite</p>
+ <img src="/logo.png" alt="crumbly" className="w-14 h-14" />
+            <p className="font-bold">Crumbly</p>
           </span>
+         
         </Link>
         {/* onclick  open sidebar menu */}
-        <div onClick={handleSidebar} className="md:hidden cursor-pointer">
+        <div onClick={handleSidebar} className="lg:hidden cursor-pointer">
           <HiOutlineMenuAlt4 className="text-2xl " />
         </div>
 
-        <div className="space-x-10 md:flex hidden">
+        <div className=" lg:flex hidden lg:ml-20">
           <Link to={"/"}>
-            <span className="">Home</span>
+            <span className={`border-r px-5 ${isActive === '/' && 'font-bold'}`}>Home</span>
           </Link>
           <Link to={"/products"}>
-            <span className="">Products</span>
+            <span className={`border-r px-5 ${isActive === '/products' && 'font-bold'}`}>Products</span>
           </Link>
           {/* <Link to={"/giftcard"}>
             <span className="">Gift Card</span>
           </Link> */}
           <Link to={"/contactus"}>
-            <span className="">Contact Us</span>
+            <span className={`border-r px-5 ${isActive === '/contactus' && 'font-bold'}`}>Contact Us</span>
           </Link>
           <Link to={"/checkout"}>
-            <span className="">Checkout</span>
+            <span className={` px-5 ${isActive === '/checkout' && 'font-bold'}`}>Checkout</span>
           </Link>
         </div>
         <div className="space-x-5 items-center flex ">
           {/* <span className="w-[50px] overflow-hidden text-ellipsis"> {user.email} </span> */}
-          <span 
-          className="cursor-pointer relative"
-          onClick={()=>setCartModalIsOpen(true)}>
+          <span
+            className="cursor-pointer relative"
+            onClick={() => setCartModalIsOpen(true)}
+          >
             <PiShoppingCartSimpleThin className="text-2xl" />
             <span className="w-6 h-6 absolute -top-2 -right-3 bg-yellow-400 rounded-full grid place-items-center">
               <p>{totalQuantity}</p>
@@ -95,16 +119,14 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
               {/* Dropdown */}
               <div className="hidden group-hover:grid gap-5 absolute -bottom-[200px] right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest">
                 <span className="border-b border-b-customBrown pb-2">
-                 <strong> Signed In as:</strong>
+                  <strong> Signed In as:</strong>
                   <br />
                   {user.email}
                 </span>
                 <Link to="/dashboard">
-                <p
-                className="cursor-pointer border border-customBrown  text-center py-2 hover:bg-customBrown rounded"
-                >
-                  Dashboard
-                </p>
+                  <p className="cursor-pointer border border-customBrown  text-center py-2 hover:bg-customBrown rounded">
+                    Dashboard
+                  </p>
                 </Link>
                 <span
                   onClick={signOut}
@@ -114,13 +136,14 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
                 </span>
               </div>
 
-              <div className="cursor-pointer text-center flex items-center space-x-2 border border-customBrown-dark rounded-md pr-2">
+              {/* Avatar and Welcome User */}
+              <div className="cursor-pointer text-center flex items-center space-x-2 md:border md:border-customBrown-dark rounded-md pr-2">
                 <img
                   src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
                   alt=""
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full "
                 />
-                <p className="text-xs">
+                <p className="text-xs hidden md:flex">
                   Welcome, <br /> {truncatedEmail}
                 </p>
               </div>
