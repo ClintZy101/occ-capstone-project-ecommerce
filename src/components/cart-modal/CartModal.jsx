@@ -4,7 +4,7 @@ import useCartStore from "../../store/useCartLocalStorage";
 import { CiTrash } from "react-icons/ci";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPesoSign } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 
 export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
@@ -59,9 +59,12 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
         <div className="overflow-y-auto md:max-h-[400px] max-h-[600px] ">
           {cartItems.map((item) => (
             <div className="flex items-center  justify-around border-b border-b-customBrown w-full mt-20 pb-4 ">
+              {/* Item Image */}
+
               <div>
                 <img src={item.img_src} alt={item.name} className="w-24" />
               </div>
+
               <div className="grid gap-2">
                 <p>{item.name}</p>
                 <p className="flex items-center">

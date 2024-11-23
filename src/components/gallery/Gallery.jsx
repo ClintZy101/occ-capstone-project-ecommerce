@@ -25,7 +25,7 @@ export default function Gallery({ products, bgColor, category }) {
               />
               </Link>
             </div>
-            <div className="  border border-customBrown-light  p-2 rounded-b">
+            <div className=" border border-customBrown-light  p-2 rounded-b">
               <p className="text-customBrown-darkest font-thin line-clamp-1 ">{product.name}</p>
               <ReviewStars cookie={product} />
               <p className="text-customBrown-dark flex space-x-2 items-center font-light mt-2">
