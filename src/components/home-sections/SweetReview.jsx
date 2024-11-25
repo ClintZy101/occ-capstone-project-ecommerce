@@ -1,4 +1,3 @@
-import { div } from "framer-motion/client";
 import React from "react";
 
 export default function SweetReview() {
@@ -25,7 +24,7 @@ export default function SweetReview() {
   return (
     <div className="p-5">
         <h2 className="font-bold text-2xl text-customBrown-darkest mb-10">Our Sweet Review</h2>
-    <div className="grid md:gap-2 gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white ">
+    <div className="grid lg:gap-2 gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white ">
       {customerData.map((data, i) => (
         <div key={i} className="bg-customBrown-darkest p-5 rounded mx-auto relative">
           <div  className="flex items-center space-x-2 mb-2">
