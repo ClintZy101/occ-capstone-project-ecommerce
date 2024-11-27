@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useCartStore from "../../store/useCartLocalStorage";
@@ -9,6 +9,8 @@ import { handleLogout } from "../../utils/useAuthHook";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { truncateBeforeChar } from "../../utils/helpers";
 import useCartModal from "../../store/useCartModal";
+import useOutsideAlerter from "../../utils/useOutsideAlerter";
+
 
 export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const { cartItems } = useCartStore();
@@ -29,6 +31,9 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActive, setIsActive] = useState("/");
+  const [accountDropdownIsActive, setAccountDropdownIsActive] = useState(false)
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, setAccountDropdownIsActive, accountDropdownIsActive);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +42,8 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     }
     // console.log(truncatedEmail)
   }, []);
+
+
 
   useEffect(() => {
     switch (pathname) {
@@ -115,9 +122,11 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
           </span>
 
           {user ? (
-            <div className="relative group flex ">
+            <div className={` relative group flex `}>
               {/* Dropdown */}
-              <div className="hidden group-hover:grid gap-5 absolute -bottom-[150px] right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest">
+              <div 
+              ref={wrapperRef}
+              className={`${accountDropdownIsActive ? 'grid': 'hidden'}  gap-5 absolute -bottom-[150px] right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest`}>
                 <span className="border-b border-b-customBrown pb-2">
                   <strong> Signed In as:</strong>
                   <br />
@@ -137,7 +146,9 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
               </div>
 
               {/* Avatar and Welcome User */}
-              <div className="cursor-pointer text-center flex items-center space-x-2 md:border md:border-customBrown-dark rounded-md pr-2">
+              <div 
+              onClick={()=>setAccountDropdownIsActive(!accountDropdownIsActive)}
+              className="cursor-pointer text-center flex items-center space-x-2  rounded-md pr-2">
                 <img
                   src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
                   alt=""
