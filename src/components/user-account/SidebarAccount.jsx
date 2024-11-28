@@ -5,7 +5,7 @@ const Category = ({ category, handleCategory, name, activeCategory }) => {
   return (
     <p
       onClick={() => handleCategory(category)}
-      className={`font-semibold cursor-pointer ${isActive ? "text-customBrown-light" : "text-customBrown-dark"}`}
+      className={`font-semibold cursor-pointer ${isActive ? "text-customBrown" : "text-customBrown-darkest"}`}
     >
       {name}
     </p>
@@ -18,7 +18,7 @@ const categories = [
   { name: "My Reviews", category: "myreviews" },
 ];
 
-export default function Sidebar({ handleCategory, activeCategory }) {
+export default function SidebarAccount({ handleCategory, activeCategory }) {
   return (
     <div className="min-w-[250px] px-5 py-5">
       {/* <h2 className="font-bold border-b pb-2">Browse By</h2> */}
