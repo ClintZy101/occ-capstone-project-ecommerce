@@ -10,7 +10,7 @@ import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { truncateBeforeChar } from "../../utils/helpers";
 import useCartModal from "../../store/useCartModal";
 import useOutsideAlerter from "../../utils/useOutsideAlerter";
-
+import AccountDropdown from "./AccountDropdown";
 
 export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const { cartItems } = useCartStore();
@@ -22,6 +22,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const { setCartModalIsOpen } = useCartModal();
   const navigate = useNavigate();
   const { user } = useAuthStore();
+  // console.log('user id',user.uid)
   const signOut = () => {
     handleLogout();
     window.location.reload();
@@ -31,19 +32,22 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActive, setIsActive] = useState("/");
-  const [accountDropdownIsActive, setAccountDropdownIsActive] = useState(false)
+
+  const [accountDropdownIsActive, setAccountDropdownIsActive] = useState(false);
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setAccountDropdownIsActive, accountDropdownIsActive);
+  useOutsideAlerter(
+    wrapperRef,
+    setAccountDropdownIsActive,
+    accountDropdownIsActive
+  );
 
   useEffect(() => {
     if (user) {
       let result = truncateBeforeChar(user.email, "@");
       setTruncatedEmail(result);
     }
-    // console.log(truncatedEmail)
-  }, []);
 
-
+  }, [user]);
 
   useEffect(() => {
     switch (pathname) {
@@ -61,7 +65,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
     }
   }, [pathname]);
 
-  console.log(pathname, isActive)
+  // console.log(pathname, isActive);
 
   return (
     <div className="sticky top-0 z-50">
@@ -82,10 +86,9 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
       >
         <Link to={"/"}>
           <span className="flex items-center space-x-2">
- <img src="/logo.png" alt="crumbly" className="w-14 h-14" />
+            <img src="/logo.png" alt="crumbly" className="w-14 h-14" />
             <p className="font-bold">Crumbly</p>
           </span>
-         
         </Link>
         {/* onclick  open sidebar menu */}
         <div onClick={handleSidebar} className="lg:hidden cursor-pointer">
@@ -94,19 +97,39 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
 
         <div className=" lg:flex hidden lg:ml-20">
           <Link to={"/"}>
-            <span className={`border-r px-5 ${isActive === '/' && 'font-bold'}`}>Home</span>
+            <span
+              className={`border-r px-5 ${isActive === "/" && "font-bold"}`}
+            >
+              Home
+            </span>
           </Link>
           <Link to={"/products"}>
-            <span className={`border-r px-5 ${isActive === '/products' && 'font-bold'}`}>Products</span>
+            <span
+              className={`border-r px-5 ${
+                isActive === "/products" && "font-bold"
+              }`}
+            >
+              Products
+            </span>
           </Link>
           {/* <Link to={"/giftcard"}>
             <span className="">Gift Card</span>
           </Link> */}
           <Link to={"/contactus"}>
-            <span className={`border-r px-5 ${isActive === '/contactus' && 'font-bold'}`}>Contact Us</span>
+            <span
+              className={`border-r px-5 ${
+                isActive === "/contactus" && "font-bold"
+              }`}
+            >
+              Contact Us
+            </span>
           </Link>
           <Link to={"/checkout"}>
-            <span className={` px-5 ${isActive === '/checkout' && 'font-bold'}`}>Checkout</span>
+            <span
+              className={` px-5 ${isActive === "/checkout" && "font-bold"}`}
+            >
+              Checkout
+            </span>
           </Link>
         </div>
         <div className="space-x-5 items-center flex ">
@@ -124,38 +147,28 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
           {user ? (
             <div className={` relative group flex `}>
               {/* Dropdown */}
-              <div 
-              ref={wrapperRef}
-              className={`${accountDropdownIsActive ? 'grid': 'hidden'}  gap-5 absolute -bottom-[150px] right-0 p-4  rounded-lg bg-customBrown-light text-customBrown-darkest`}>
-                <span className="border-b border-b-customBrown pb-2">
-                  <strong> Signed In as:</strong>
-                  <br />
-                  {user.email}
-                </span>
-                {/* <Link to="/dashboard">
-                  <p className="cursor-pointer border border-customBrown  text-center py-2 hover:bg-customBrown rounded">
-                    Dashboard
-                  </p>
-                </Link> */}
-                <span
-                  onClick={signOut}
-                  className="cursor-pointer bg-customBrown text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300 text-center"
-                >
-                  Logout
-                </span>
-              </div>
+              <AccountDropdown
+                wrapperRef={wrapperRef}
+                signOut={signOut}
+                user={user}
+                accountDropdownIsActive={accountDropdownIsActive}
+                setAccountDropdownIsActive={setAccountDropdownIsActive}
+              />
 
               {/* Avatar and Welcome User */}
-              <div 
-              onClick={()=>setAccountDropdownIsActive(!accountDropdownIsActive)}
-              className="cursor-pointer text-center flex items-center space-x-2  rounded-md pr-2">
+              <div
+                onClick={() =>
+                  setAccountDropdownIsActive(!accountDropdownIsActive)
+                }
+                className="cursor-pointer text-center flex items-center space-x-2  rounded-md pr-2"
+              >
                 <img
                   src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
                   alt=""
                   className="w-10 h-10 rounded-full "
                 />
                 <p className="text-xs hidden md:flex">
-                  Welcome, <br /> {truncatedEmail}
+                  Welcome, <br /> {user.displayName || truncatedEmail}
                 </p>
               </div>
             </div>

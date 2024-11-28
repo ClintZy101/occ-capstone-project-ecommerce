@@ -17,6 +17,7 @@ import Dashboard from "./pages/Dashboard";
 import ContactUs from "./pages/ContactUs";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import { AnimatePresence, motion, transform } from "framer-motion";
+import UserAccount from "./pages/UserAccount";
 
 
 function App() {
@@ -56,7 +57,6 @@ function App() {
       />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          {/* <Route path="/" element={<Home />} /> */}
           <Route
             path="/"
             element={
@@ -141,13 +141,20 @@ function App() {
               </motion.div>
             }
           />
-
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/products" element={<Products />} /> */}
-          {/* <Route path="/products/:id" element={<SingleProduct />} /> */}
-          {/* <Route path="/contactus" element={<ContactUs />} /> */}
-          {/* <Route path="/checkout" element={<Checkout />} /> */}
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route
+            path="/account/:id"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <UserAccount />
+              </motion.div>
+            }
+          />
         </Routes>
       </AnimatePresence>
       <Footer />
