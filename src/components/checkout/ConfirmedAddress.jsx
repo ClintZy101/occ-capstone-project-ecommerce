@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
 
-export default function ConfirmedAddress({ addressData }) {
+export default function ConfirmedAddress({ addressData, handleChangeAddress }) {
   const AddressDiv = ({ title, data }) => {
     return (
       <div>
@@ -31,6 +31,13 @@ export default function ConfirmedAddress({ addressData }) {
       />
       <div className="mt-5 border-t border-t-customBrown flex space-x-10 items-center py-2 justify-center font-bold">
         <p>Address Confirmed</p> <FaCheck className="text-xl" />
+      </div>
+      <div className="justify-center flex">
+        <button 
+        onClick={handleChangeAddress}
+        className="flex space-x-5 justify-center  items-center mt-4 bg-customBrown-darkest hover:bg-customBrown-dark text-white px-4 py-2 rounded">
+          Change Address
+        </button>
       </div>
     </div>
   );

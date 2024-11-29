@@ -20,7 +20,7 @@ export default function Checkout() {
     handleSubmitAddress,
     addressData,
     addressStatus,
-    handleChange,
+    handleChangeAddress,
     handleAdditionalDeliveryFee,
     total,
     additionalDeliveryFee,
@@ -32,7 +32,6 @@ export default function Checkout() {
     errors,
     setErrors,
   } = useCheckout();
-
 
   return (
     <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest font-thin">
@@ -50,10 +49,10 @@ export default function Checkout() {
       />
 
       {/* <DeliveryAddress handleChange={handleChange} formValue={formValue}  errors={errors}/> */}
-      {addressData.length !== 0 ? (
-       <ConfirmedAddress addressStatus={addressStatus} addressData={addressData}/>
+      {addressData.length !== 0 && addressStatus.success === true ? (
+       <ConfirmedAddress addressStatus={addressStatus} addressData={addressData} handleChangeAddress={handleChangeAddress}/>
       ) : (
-        <FormikAddress handleSubmitAddress={handleSubmitAddress} />
+        <FormikAddress handleSubmitAddress={handleSubmitAddress} addressData={addressData} />
       )}
 
       <PaymentMethod

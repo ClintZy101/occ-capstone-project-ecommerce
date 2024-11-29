@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 
-export default function FormikAddress({ handleSubmitAddress, addressStatus }) {
+export default function FormikAddress({ handleSubmitAddress, addressData }) {
   // Define the validation schema with Yup
   const validationSchema = Yup.object({
     fullname: Yup.string().required("Full Name is required."),
@@ -23,7 +23,8 @@ export default function FormikAddress({ handleSubmitAddress, addressStatus }) {
   });
 
   // Initial values for the form fields
-  const initialValues = {
+
+  const [initialValues,setInitialValues] = useState({
     fullname: "",
     mobile: "",
     region: "",
@@ -33,7 +34,13 @@ export default function FormikAddress({ handleSubmitAddress, addressStatus }) {
     streetAddress: "",
     postalCode: "",
     sameBillingAddress: false,
-  };
+  })
+
+  useState(()=>{
+    if(addressData?.length !== 0) {
+      setInitialValues(addressData)
+    }
+  },[addressData])
 
   return (
     <div className="bg-customBrown-light p-5">

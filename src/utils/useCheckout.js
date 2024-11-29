@@ -126,15 +126,23 @@ const saveAddressToLocalStorage = (items) => {
 
   const handleSubmitAddress = (values) => {
     console.log("submit success:", values);
+    saveAddressToLocalStorage(values)
     setAddressStatus({
       message: "Address Confirmed",
       success: true,
-      data: values,
+      data: addressData,
     });
-    saveAddressToLocalStorage(values)
+    
   };
-  
 
+  const handleChangeAddress = () => {
+    setAddressStatus({
+      message:"Change Address",
+      success: false,
+      data: addressData
+    })
+  }
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValue((prev) => ({ ...prev, [name]: value }));
@@ -163,6 +171,7 @@ const saveAddressToLocalStorage = (items) => {
     errors,
     validateForm,
     handleSubmitAddress,
+    handleChangeAddress,
     addressData,
     addressStatus,
     shippingFee,
@@ -172,5 +181,6 @@ const saveAddressToLocalStorage = (items) => {
     paymentMethod,
     errors,
     setErrors,
+    saveAddressToLocalStorage,
   };
 }
