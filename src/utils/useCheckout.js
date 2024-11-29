@@ -12,6 +12,8 @@ export default function useCheckout() {
     data: {},
   });
 
+  const [checkoutSummary, setCheckoutSummary] = useState({})
+
   const total = (getTotalPrice() + shippingFee + additionalDeliveryFee).toFixed(
     2
   );
@@ -155,6 +157,16 @@ const saveAddressToLocalStorage = (items) => {
     });
   };
 
+  const handleCheckout = () => {
+    setCheckoutSummary({
+      total,
+      shippingFee,
+      addressStatus,
+      paymentMethod,
+      success:{status: true, message:"Here is your checkout summary: "}
+    })
+  }
+
   useEffect(() => {
     if (getTotalPrice() > freeShippingThreshhold) {
       setShippingFee(0);
@@ -164,6 +176,8 @@ const saveAddressToLocalStorage = (items) => {
   }, [getTotalPrice()]);
 
   return {
+    handleCheckout,
+    checkoutSummary,
     handleChange,
     total,
     handleAdditionalDeliveryFee,

@@ -7,17 +7,16 @@ import Sidebar from "./components/navbar/Sidebar";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Footer from "./footer/Footer";
 import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
 import Checkout from "./pages/Checkout";
-import CartModal from "./components/cart-modal/CartModal";
+import CartModal from "./components/modals/CartModal";
 import useCartModal from "./store/useCartModal";
-import Dashboard from "./pages/Dashboard";
 import ContactUs from "./pages/ContactUs";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
-import { AnimatePresence, motion, transform } from "framer-motion";
+import { AnimatePresence, motion} from "framer-motion";
 import UserAccount from "./pages/UserAccount";
+import Footer from "./components/footer/Footer";
 
 
 function App() {

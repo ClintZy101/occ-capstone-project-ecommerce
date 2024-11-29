@@ -4,6 +4,7 @@ import PaymentMethod from "../components/payment-method/PaymentMethod";
 import useCheckout from "../utils/useCheckout";
 import FormikAddress from "../components/checkout/FormikAddress";
 import ConfirmedAddress from "../components/checkout/ConfirmedAddress";
+import SuccessCheckoutModal from "../components/modals/SuccessCheckoutModal";
 
 
 
@@ -17,6 +18,8 @@ export default function Checkout() {
   } = useCartStore();
 
   const {
+    handleCheckout,
+    checkoutSummary,
     handleSubmitAddress,
     addressData,
     addressStatus,
@@ -33,6 +36,8 @@ export default function Checkout() {
     setErrors,
   } = useCheckout();
 
+
+  console.log(checkoutSummary)
   return (
     <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest font-thin">
       <ReviewOrder
@@ -59,7 +64,9 @@ export default function Checkout() {
         total={total}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
+        handleCheckout={handleCheckout}
       />
+      <SuccessCheckoutModal checkoutSummary={checkoutSummary}/>
       <div></div>
     </div>
   );

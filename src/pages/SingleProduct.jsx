@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import QuantityButtons from "../components/buttons/QuantityButtons";
 import useCartStore from "../store/useCartLocalStorage";
 import AddToCartButton from "../components/buttons/AddToCartButton";
-import CartModal from "../components/cart-modal/CartModal";
 import useCartModal from "../store/useCartModal";
 import ReviewStars from "../components/reviews/ReviewStars";
 

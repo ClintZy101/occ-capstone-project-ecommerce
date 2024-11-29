@@ -5,7 +5,7 @@ import { CiTrash } from "react-icons/ci";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPesoSign } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+
 
 export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
   const {
@@ -128,7 +128,7 @@ export default function CartModal({ cartModalIsOpen, setCartModalIsOpen }) {
       {/* half the page is blank, closes modal onclick */}
       <div
         onClick={() => setCartModalIsOpen(false)}
-        className="hidden md:flex md:w-1/2 bg-customBrown-darkest opacity-50"
+        className="hidden md:flex md:w-1/2 bg-black opacity-50"
       ></div>
     </div>
   );
