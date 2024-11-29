@@ -6,14 +6,14 @@ export default function QuantityButtons({handleDecrement, handleIncrement, quant
     <div className="flex space-x-4 items-center  border w-max ">
               <span
                 onClick={handleDecrement}
-                className="cursor-pointer  w-10 h-10 grid place-items-center transition duration-300"
+                className="cursor-pointer  w-10 h-10 grid place-items-center transition duration-300 hover:bg-customBrown"
               >
                 <BiMinus />
               </span>
               <span>{quantity}</span>
               <span
                 onClick={handleIncrement}
-                className="cursor-pointer w-10 h-10 grid place-items-center transition duration-300"
+                className="cursor-pointer w-10 h-10 grid place-items-center transition duration-300 hover:bg-customBrown"
               >
                 <BiPlus />
               </span>
