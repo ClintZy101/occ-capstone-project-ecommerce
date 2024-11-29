@@ -11,7 +11,7 @@ const Button = ({ title }) => {
   );
 };
 
-export default function Section() {
+export default function AccountSection() {
   const { user } = useAuthStore();
 
   const [accountDetails, setAccountDetails] = useState({

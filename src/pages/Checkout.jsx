@@ -1,8 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
-import ReviewOrder from "../components/cart-page/ReviewOrder";
-import DeliveryAddress from "../components/cart-page/DeliveryAddress";
+import ReviewOrder from "../components/checkout/ReviewOrder";
 import PaymentMethod from "../components/payment-method/PaymentMethod";
+import useCheckout from "../utils/useCheckout";
+import FormikAddress from "../components/checkout/FormikAddress";
+import ConfirmedAddress from "../components/checkout/ConfirmedAddress";
+
+
 
 export default function Checkout() {
   const {
@@ -13,39 +16,27 @@ export default function Checkout() {
     removeFromCart,
   } = useCartStore();
 
-  const[additionalDeliveryFee, setAdditionalDeliveryFee] = useState(0)
-  const [shippingFee, setShippingFee] = useState(0);
+  const {
+    handleSubmitAddress,
+    addressData,
+    addressStatus,
+    handleChange,
+    handleAdditionalDeliveryFee,
+    total,
+    additionalDeliveryFee,
+    deliveryOptionsRef,
+    shippingFee,
+    formValue,
+    paymentMethod,
+    setPaymentMethod,
+    errors,
+    setErrors,
+  } = useCheckout();
 
-  const total = (getTotalPrice() + shippingFee + additionalDeliveryFee).toFixed(2) ;
-  const freeShippingThreshhold = 1000;
-  const deliveryOptionsRef = {
-    regular: useRef(null),
-    fast: useRef(null),
-    express: useRef(null),
-  };
 
- 
-  const handleAdditionalDeliveryFee = (option) =>{
-    if(option === "regular"){
-        setAdditionalDeliveryFee(Number(deliveryOptionsRef.regular.current.value))
-    } else if (option === 'fast'){
-        setAdditionalDeliveryFee(Number(deliveryOptionsRef.fast.current.value))
-    } else if(option === 'express') {
-        setAdditionalDeliveryFee(Number(deliveryOptionsRef.express.current.value))
-    }
-  }
-
-  useEffect(() => {
-    if (getTotalPrice() > freeShippingThreshhold) {
-      setShippingFee(0);
-    } else if (getTotalPrice() < freeShippingThreshhold) {
-      setShippingFee(150);
-    }
-  }, [getTotalPrice()]);
-  console.log(additionalDeliveryFee)
   return (
-    <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest">
-        <ReviewOrder 
+    <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest font-thin">
+      <ReviewOrder
         handleAdditionalDeliveryFee={handleAdditionalDeliveryFee}
         cartItems={cartItems}
         incrementQuantity={incrementQuantity}
@@ -56,11 +47,21 @@ export default function Checkout() {
         deliveryOptionsRef={deliveryOptionsRef}
         additionalDeliveryFee={additionalDeliveryFee}
         getTotalPrice={getTotalPrice}
-        />
-      <DeliveryAddress />
-      <PaymentMethod total={total}/>
+      />
+
+      {/* <DeliveryAddress handleChange={handleChange} formValue={formValue}  errors={errors}/> */}
+      {addressData.length !== 0 ? (
+       <ConfirmedAddress addressStatus={addressStatus} addressData={addressData}/>
+      ) : (
+        <FormikAddress handleSubmitAddress={handleSubmitAddress} />
+      )}
+
+      <PaymentMethod
+        total={total}
+        paymentMethod={paymentMethod}
+        setPaymentMethod={setPaymentMethod}
+      />
       <div></div>
     </div>
   );
 }
-
