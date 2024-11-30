@@ -31,7 +31,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
 
   const location = useLocation();
   const pathname = location.pathname;
-  const [isActive, setIsActive] = useState("/");
+  const [isActive, setIsActive] = useState("");
 
   const [accountDropdownIsActive, setAccountDropdownIsActive] = useState(false);
   const wrapperRef = useRef(null);
@@ -62,6 +62,11 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
         break;
       case "/checkout":
         setIsActive("/checkout");
+        break
+        default:
+          if (pathname.startsWith(`/account`)) {
+            setIsActive(`/account`);
+          }
     }
   }, [pathname]);
 
@@ -126,9 +131,16 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
           </Link>
           <Link to={"/checkout"}>
             <span
-              className={` px-5 ${isActive === "/checkout" && "font-bold"}`}
+              className={`border-r px-5 ${isActive === "/checkout" && "font-bold"}`}
             >
               Checkout
+            </span>
+          </Link>
+          <Link to={"/account/"}>
+            <span
+              className={` px-5 ${isActive === "/account" && "font-bold"}`}
+            >
+              Account
             </span>
           </Link>
         </div>

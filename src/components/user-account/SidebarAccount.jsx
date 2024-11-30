@@ -40,15 +40,15 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuthStore } from "../../store/useAuthStore";
 
-export default function Sidebar() {
+export default function Sidebar({user}) {
 
-  const {user} = useAuthStore();
+
   return (
-    <nav className="grid">
+    <nav className="lg:grid lg:gap-3 mb-5 flex space-x-20 lg:space-x-0 mx-auto w-max ">
+    
       <NavLink
-        to={`${user.uid}`}
+        to={`${user?.uid}`}
         className={({ isActive }) =>
           isActive ? "text-customBrown font-bold" : "text-gray-700"
         }
