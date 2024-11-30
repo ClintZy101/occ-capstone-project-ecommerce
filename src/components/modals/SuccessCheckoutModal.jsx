@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { FaPesoSign } from "react-icons/fa6";
 import { IoCloseOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore";
+
 
 export default function SuccessCheckoutModal({ checkoutSummary }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { user } = useAuthStore();
   useEffect(() => {
     if (checkoutSummary?.success?.status) {
       setIsOpen(true);
     }
   }, [checkoutSummary]);
 
+  const navigate = useNavigate();
+
   const handleClose = () => {
     setIsOpen(false);
+    navigate(`/account/myorders`)
   };
 
   function getDetailedAddress(address) {

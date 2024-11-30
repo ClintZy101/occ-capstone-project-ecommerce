@@ -140,8 +140,9 @@ function App() {
               </motion.div>
             }
           />
+  {/* path="/account/:id" */}
           <Route
-            path="/account/:id"
+            path="/account/*"
             element={
               <motion.div
                 variants={pageVariants}
