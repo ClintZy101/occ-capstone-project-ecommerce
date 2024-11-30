@@ -1,40 +1,53 @@
-import React from "react";
-
-const Order = ({
-  image = "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  name = "Cookie Product Sample",
-  quantity = 1,
-}) => {
-  return (
-    <div className="flex lg:justify-between p-5 bg-gray-100 font-thin text-customBrown-darkest">
-      <div className="flex space-x-5">
-        <img src={image} alt={name} className="w-20 h-20" />
-        <div>
-          <p>{name}</p>
-          <p>Qty: {quantity}</p>
-        </div>
-      </div>
-
-      <div className="flex space-x-10 self-end font-thin">
-        <button className="bg-customBrown hover:bg-customBrown-dark text-white px-5 py-1">
-          Write a Review
-        </button>
-        <button className="bg-customBrown-darkest hover:bg-customBrown-dark text-white px-5 py-1">
-          Order Again
-        </button>
-      </div>
-    </div>
-  );
-};
+import axios from "axios";
+import { getAuth } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import OrdersByDateAndTime from "./order-section/OrdersByDateAndTime";
 
 export default function OrdersSection() {
+  const [loading, setIsLoading] = useState(false);
+  const [checkoutData, setCheckoutData] = useState(null);
+
+  useEffect(() => {
+    const fetchCheckoutHistory = async () => {
+      setIsLoading(true);
+      try {
+        const auth = getAuth(); // Initialize Firebase Auth
+        const user = auth.currentUser;
+        if (!user) {
+          throw new Error("User not authenticated.");
+        }
+        const idToken = await user.getIdToken();
+        const response = await axios.get(
+          "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
+
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+        );
+        setCheckoutData(response.data.data);
+      } catch (error) {
+        console.error("Checkout failed:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCheckoutHistory();
+  }, []);
+  // console.log(checkoutData);
+  const sortedDataToLatest =checkoutData?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
   return (
     <div>
-      <h2 className="font-semibold text-xl mb-5 text-customBrown-darkest">Order History</h2>
+      <h2 className="font-semibold text-xl mb-5 text-customBrown-darkest">
+        Order History
+      </h2>
       <div className="grid gap-2">
-        <Order />
-        <Order />
-        <Order />
+        {/* separate by each checkout group*/}
+        {sortedDataToLatest?.map((data, i) => (
+          <OrdersByDateAndTime key={i} data={data}/>
+        ))}
       </div>
     </div>
   );

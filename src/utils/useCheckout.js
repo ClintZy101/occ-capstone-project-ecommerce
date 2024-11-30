@@ -158,18 +158,7 @@ export default function useCheckout() {
     });
   };
 
-  //   const handleCheckout = () => {
-  //     setCheckoutSummary({
-  //       cartItems,
-  //       total,
-  //       shippingFee,
-  //       addressStatus,
-  //       paymentMethod,
-  //       success:{status: true, message:"Here is your checkout summary: "}
-  //     })
-  // // axios.post code here with firebase auth authentication
-  // fetch('http://localhost:5555/api/checkout', )
-  //   }
+
 
   const handleCheckout = async () => {
     setIsLoading(true);
@@ -184,6 +173,7 @@ export default function useCheckout() {
 
       const idToken = await user.getIdToken(); // Get Firebase auth token
 
+
       await axios.post(
         "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
         {
@@ -193,6 +183,7 @@ export default function useCheckout() {
             item_name: item.name,
             quantity: item.quantity,
             price: item.price,
+            image:item.img_src,
           })),
           total,
           shippingFee,
@@ -206,7 +197,7 @@ export default function useCheckout() {
         }
       );
 
-      console.log('create checkout success, Response: ')
+      console.log('cartItems: ', cartItems)
 
       // setCheckoutSummary({
       //   ...response.data,
