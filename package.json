@@ -16,6 +16,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.7.8",
     "firebase": "^11.0.2",
+    "firebase-tools": "^13.27.0",
     "formik": "^2.4.6",
     "framer-motion": "^11.11.17",
     "react": "^18.3.1",

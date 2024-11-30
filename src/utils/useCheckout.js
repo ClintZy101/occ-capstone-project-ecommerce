@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
+import axios from "axios";
+import { getAuth } from "firebase/auth";
 
 export default function useCheckout() {
-  const { getTotalPrice } = useCartStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const { getTotalPrice, cartItems } = useCartStore();
   const [additionalDeliveryFee, setAdditionalDeliveryFee] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -12,7 +15,7 @@ export default function useCheckout() {
     data: {},
   });
 
-  const [checkoutSummary, setCheckoutSummary] = useState({})
+  const [checkoutSummary, setCheckoutSummary] = useState({});
 
   const total = (getTotalPrice() + shippingFee + additionalDeliveryFee).toFixed(
     2
@@ -105,46 +108,44 @@ export default function useCheckout() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const loadAddressFromLocalStorage = () => {
+    try {
+      const data = localStorage.getItem("address");
+      return data ? JSON.parse(data) : {};
+    } catch (error) {
+      console.error("Error loading from localStorage:", error);
+      return {};
+    }
+  };
 
-const loadAddressFromLocalStorage = () => {
-  try {
-    const data = localStorage.getItem("address");
-    return data ? JSON.parse(data) : {};
-  } catch (error) {
-    console.error("Error loading from localStorage:", error);
-    return {};
-  }
-};
+  const addressData = loadAddressFromLocalStorage();
 
-const addressData = loadAddressFromLocalStorage();
-
-const saveAddressToLocalStorage = (items) => {
-  try {
-    localStorage.setItem("address", JSON.stringify(items));
-  } catch (error) {
-    console.error("Error saving to localStorage:", error);
-  }
-};
+  const saveAddressToLocalStorage = (items) => {
+    try {
+      localStorage.setItem("address", JSON.stringify(items));
+    } catch (error) {
+      console.error("Error saving to localStorage:", error);
+    }
+  };
 
   const handleSubmitAddress = (values) => {
     console.log("submit success:", values);
-    saveAddressToLocalStorage(values)
+    saveAddressToLocalStorage(values);
     setAddressStatus({
       message: "Address Confirmed",
       success: true,
       data: addressData,
     });
-    
   };
 
   const handleChangeAddress = () => {
     setAddressStatus({
-      message:"Change Address",
+      message: "Change Address",
       success: false,
-      data: addressData
-    })
-  }
-  
+      data: addressData,
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValue((prev) => ({ ...prev, [name]: value }));
@@ -157,15 +158,78 @@ const saveAddressToLocalStorage = (items) => {
     });
   };
 
-  const handleCheckout = () => {
-    setCheckoutSummary({
-      total,
-      shippingFee,
-      addressStatus,
-      paymentMethod,
-      success:{status: true, message:"Here is your checkout summary: "}
-    })
-  }
+  //   const handleCheckout = () => {
+  //     setCheckoutSummary({
+  //       cartItems,
+  //       total,
+  //       shippingFee,
+  //       addressStatus,
+  //       paymentMethod,
+  //       success:{status: true, message:"Here is your checkout summary: "}
+  //     })
+  // // axios.post code here with firebase auth authentication
+  // fetch('http://localhost:5555/api/checkout', )
+  //   }
+
+  const handleCheckout = async () => {
+    setIsLoading(true);
+
+    try {
+      const auth = getAuth(); // Initialize Firebase Auth
+      const user = auth.currentUser;
+
+      if (!user) {
+        throw new Error("User not authenticated.");
+      }
+
+      const idToken = await user.getIdToken(); // Get Firebase auth token
+
+      await axios.post(
+        "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
+        {
+          user_email: user.email,
+          items: cartItems.map((item) => ({
+            item_id: item.id,
+            item_name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+          })),
+          total,
+          shippingFee,
+          addressStatus,
+          paymentMethod,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        }
+      );
+
+      console.log('create checkout success, Response: ')
+
+      // setCheckoutSummary({
+      //   ...response.data,
+      //   success: { status: true, message: "Here is your checkout summary!" },
+      // });
+
+      setCheckoutSummary({
+        cartItems,
+        total,
+        shippingFee,
+        addressStatus,
+        paymentMethod,
+        success: { status: true, message: "Here is your checkout summary: " },
+      });
+
+      alert("Checkout successful!");
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("Checkout failed. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (getTotalPrice() > freeShippingThreshhold) {

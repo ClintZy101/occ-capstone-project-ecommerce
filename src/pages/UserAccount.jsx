@@ -3,6 +3,8 @@ import { useAuthStore } from "../store/useAuthStore";
 import { truncateBeforeChar } from "../utils/helpers";
 import Sidebar from "../components/user-account/SidebarAccount";
 import AccountSection from "../components/user-account/AccountSection";
+import ReviewsSection from "../components/user-account/ReviewsSection";
+import OrdersSection from "../components/user-account/OrdersSection";
 
 export default function UserAccount() {
   const { user } = useAuthStore(); // Zustand store for user
@@ -11,6 +13,7 @@ export default function UserAccount() {
   const handleSection = (category) => {
     setSelectedSection(category);
   };
+
   useEffect(() => {
     if (user) {
       const truncatedEmail = truncateBeforeChar(user.email, "@");
@@ -20,16 +23,19 @@ export default function UserAccount() {
   }, [user]);
 
   return (
-    <div className="min-h-[100vh] p-5 flex">
+    <div className="min-h-[100vh] p-5 lg:flex">
       {/* <h1>{userDisplayName}'s Account</h1> */}
-      <div className="w-1/5">
+      <div className="md:w-1/5">
         <Sidebar
           handleCategory={handleSection}
           activeCategory={selectedSection}
         />
       </div>
-      <div className="w-4/5">
-        <AccountSection />
+      <div className="md:w-4/5">
+      {selectedSection === 'myaccount' && <AccountSection />}
+      {selectedSection === 'myreviews' && <ReviewsSection />}
+      {selectedSection === 'myorders' && <OrdersSection />}
+        
       </div>
     </div>
   );

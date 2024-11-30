@@ -17,7 +17,7 @@ export default function AccountSection() {
   const [accountDetails, setAccountDetails] = useState({
     firstName: "",
     lastName: "",
-    email: user.email,
+    email: user?.email || "",
     currentPassword: "",
     newPassWord: "",
     image: "",
@@ -34,7 +34,7 @@ export default function AccountSection() {
     <div>
       <div className="bg-gray-100 p-5 text-customBrown-darkest">
         <h1 className="mb-5">Account</h1>
-        <div className="grid gap-5 lg:flex justify-between">
+        <div className="grid gap-5 lg:flex lg:justify-around mx-20">
           {/* Profile Image */}
           <div className="flex space-x-10 items-center">
             <div className="w-20 h-20 rounded-full bg-gray-200 grid place-items-center cursor-pointer" >
@@ -46,7 +46,7 @@ export default function AccountSection() {
             </div>
           </div>
           {/* Buttons */}
-          <div className="flex space-x-10 items-center ">
+          <div className="flex space-x-10 items-center  ">
             <Button title={"Upload Image"} />
             <Button title={"Delete Image"} />
           </div>

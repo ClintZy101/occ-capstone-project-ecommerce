@@ -1,12 +1,10 @@
 import useCartStore from "../store/useCartLocalStorage";
 import ReviewOrder from "../components/checkout/ReviewOrder";
-import PaymentMethod from "../components/payment-method/PaymentMethod";
+import PaymentMethod from "../components/checkout/PaymentMethod";
 import useCheckout from "../utils/useCheckout";
 import FormikAddress from "../components/checkout/FormikAddress";
 import ConfirmedAddress from "../components/checkout/ConfirmedAddress";
 import SuccessCheckoutModal from "../components/modals/SuccessCheckoutModal";
-
-
 
 export default function Checkout() {
   const {
