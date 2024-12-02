@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import OrdersByDateAndTime from "./order-section/OrdersByDateAndTime";
 import ReviewModal from "../modals/ReviewModal";
 import useReview from "../../utils/useReview";
+import { API_URL } from "../../api/api-url";
 
 export default function OrdersSection() {
   const [loading, setIsLoading] = useState(false);
@@ -28,7 +29,7 @@ export default function OrdersSection() {
         }
         const idToken = await user.getIdToken(); // Get the ID token from the authenticated user
         const response = await axios.get(
-          "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
+          `${API_URL}/api/checkout`, // Replace with your actual backend endpoint
           {
             headers: {
               Authorization: `Bearer ${idToken}`, // Include the ID token in the Authorization header
