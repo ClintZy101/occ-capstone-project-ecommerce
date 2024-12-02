@@ -21,7 +21,7 @@ export default function SingleOrder({
         </div>
       </div>
 
-      <div className="flex space-x-10 self-end font-thin">
+      <div className="flex md:space-x-5 space-x-2 md:self-end  font-thin">
         <button 
         onClick={()=>handleProductForReview(name, id)}
         className="bg-customBrown hover:bg-customBrown-dark text-white px-5 py-1">
