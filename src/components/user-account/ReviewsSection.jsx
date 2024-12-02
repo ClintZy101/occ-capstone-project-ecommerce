@@ -44,11 +44,11 @@ export default function ReviewsSection() {
                 <p className="text-xs font-thin">{date.toLocaleString()}</p>
               </div>
               <p className="text-customBrown-darkest text-lg">
-                {item.product_review}
+                "{item.product_review}"
               </p>
 
               {/* buttons for update and delete  */}
-              <div className="md:flex md:space-x-10 justify-self-end font-thin mt-5">
+              <div className="md:flex md:space-x-5 space-x-2 justify-self-end font-thin mt-5">
                 <button
                   onClick={() => handleEditReviewModal(item)}
                   className="bg-customBrown hover:bg-customBrown-dark text-white px-5 py-1"
