@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import { API_URL } from "../api/api-url";
 
 export default function useCheckout() {
   const [isLoading, setIsLoading] = useState(false);
@@ -175,7 +176,7 @@ export default function useCheckout() {
 
 
       await axios.post(
-        "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
+        `${API_URL}/api/checkout` || "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
         {
           user_email: user.email,
           items: cartItems.map((item) => ({

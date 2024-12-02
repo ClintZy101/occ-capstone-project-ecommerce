@@ -13,7 +13,8 @@ export default function ReviewsSection() {
   } = useReview();
 
   // console.log(fetchedReviewsData);
-  console.log(reviewData)
+  // console.log(reviewData)
+
 
   const sortedDataToLatest = fetchedReviewsData?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

@@ -11,7 +11,8 @@ export default function useReview() {
   const [user, setUser] = useState(null);
   const [fetchedReviewsData, setFetchedReviewsData] = useState([]);
   const [editReviewModalIsOpen, setEditReviewModalIsOpen] = useState(false);
-  const API_URL = "http://localhost:5555/api/reviews";
+  // const localhost = "http://localhost:5555/api/reviews";
+  const API_URL = "https://occ-capstone-proj-backend-3.onrender.com"
 
   const fetchReviews = async () => {
     setIsLoading(true);
@@ -52,7 +53,7 @@ export default function useReview() {
   const handleUpdateReview = async (idToken, review ) => {
     console.log("review submitting as update review");
     await axios.put(
-      `http://localhost:5555/api/reviews/${reviewData._id}`, // Replace with your actual backend endpoint
+      `${API_URL}/api/reviews/${reviewData._id}`, // Replace with your actual backend endpoint
       {
         product_id: reviewData.product_id,
         product_name: reviewData.product_name,
@@ -72,8 +73,9 @@ export default function useReview() {
   };
 
   const handleCreateReview = async (idToken, review, rating,) => {
+
     await axios.post(
-      API_URL, // Replace with your actual backend endpoint
+      `${API_URL}/api/reviews`, // Replace with your actual backend endpoint
       {
         product_id: productForReview.product_id,
         product_name: productForReview.product_name,
@@ -87,7 +89,7 @@ export default function useReview() {
         },
       }
     );
-    console.log("review submitted as create review");
+    console.log("review submitted as create review", API_URL);
     setReviewModalIsOpen((prevState) => !prevState);
     fetchReviews();
   };
