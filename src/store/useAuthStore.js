@@ -15,8 +15,10 @@ export const useAuthStore = create(
   persist(
     (set) => ({
       user: null, // User state
+      loading: true,
       setUser: (userData) => set({ user: userData }),
       clearUser: () => set({ user: null }),
+      setLoading: (loading) => set({ loading }),
     }),
     {
       name: "auth-storage", // Key in localStorage

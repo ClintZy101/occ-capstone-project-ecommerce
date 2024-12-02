@@ -45,7 +45,7 @@ export default function Sidebar({user}) {
 
 
   return (
-    <nav className="lg:grid lg:gap-3 mb-5 flex space-x-20 lg:space-x-0 mx-auto w-max ">
+    <nav className="lg:grid lg:gap-3 mb-5 flex w-full justify-between lg:w-max ">
     
       <NavLink
         to={`${user?.uid}`}
