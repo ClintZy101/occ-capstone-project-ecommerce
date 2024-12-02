@@ -1,6 +1,7 @@
 import React from "react";
 import useReview from "../../utils/useReview";
 import EditReviewModal from "../modals/EditReviewModal";
+import DeleteReviewModal from "../modals/DeleteReviewModal";
 
 export default function ReviewsSection() {
   const {
@@ -9,7 +10,11 @@ export default function ReviewsSection() {
     editReviewModalIsOpen,
     setEditReviewModalIsOpen,
     reviewData,
-    fetchedReviewsData
+    fetchedReviewsData,
+    deleteModalIsOpen,
+    handleDeleteReview,
+    handleDeleteReviewModal,
+    setDeleteModalIsOpen
   } = useReview();
 
   // console.log(fetchedReviewsData);
@@ -29,6 +34,12 @@ export default function ReviewsSection() {
         handleClose={() => setEditReviewModalIsOpen((prevState) => !prevState)}
         data={reviewData}
         handleSubmit={handleSubmitReview}
+      />
+      <DeleteReviewModal 
+      isOpen={deleteModalIsOpen}
+      handleClose={()=> setDeleteModalIsOpen((prevState)=> !prevState)}
+      data={reviewData}
+      handleSubmit={handleDeleteReview}
       />
 
       <div className="grid gap-5">
@@ -56,7 +67,9 @@ export default function ReviewsSection() {
                   Update Review
                 </button>
 
-                <button className="bg-customBrown-darkest hover:bg-customBrown-dark text-white px-5 py-1">
+                <button 
+                onClick={()=> handleDeleteReviewModal(item)}
+                className="bg-customBrown-darkest hover:bg-customBrown-dark text-white px-5 py-1">
                   Delete Review
                 </button>
               </div>

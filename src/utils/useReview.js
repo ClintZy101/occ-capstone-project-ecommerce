@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
+import { LOCALHOST } from "../api/api-url";
 
 export default function useReview() {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,8 @@ export default function useReview() {
   const [user, setUser] = useState(null);
   const [fetchedReviewsData, setFetchedReviewsData] = useState([]);
   const [editReviewModalIsOpen, setEditReviewModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
+
   // const localhost = "http://localhost:5555/api/reviews";
   const API_URL = "https://occ-capstone-proj-backend-3.onrender.com"
 
@@ -42,6 +45,11 @@ export default function useReview() {
     setEditReviewModalIsOpen((prevState) => !prevState);
   };
 
+  const handleDeleteReviewModal = (data) =>{
+    setReviewData(data);
+    setDeleteModalIsOpen((prevState) => !prevState);
+  }
+
   const handleProductForReview = (name, id) => {
     setProductForReview({
       product_id: id,
@@ -50,8 +58,33 @@ export default function useReview() {
     setReviewModalIsOpen((prevState) => !prevState);
   };
 
+  const handleDeleteReview = async() =>{
+
+    const auth = getAuth(); 
+    const user = auth.currentUser;
+
+    if (!user) {
+      throw new Error("User not authenticated.");
+    }
+
+    const idToken = await user.getIdToken();
+
+    await axios.delete(
+      `${API_URL}/api/reviews/${reviewData._id}`, 
+      // `${LOCALHOST}/api/reviews/${reviewData._id}`, 
+      {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      }
+    );
+
+    fetchReviews();
+    setDeleteModalIsOpen(false)
+  }
+
   const handleUpdateReview = async (idToken, review ) => {
-    console.log("review submitting as update review");
+
     await axios.put(
       `${API_URL}/api/reviews/${reviewData._id}`, // Replace with your actual backend endpoint
       {
@@ -123,6 +156,8 @@ export default function useReview() {
     }
   };
 
+
+
   useEffect(() => {
     const auth = getAuth();
 
@@ -160,6 +195,10 @@ export default function useReview() {
     handleUpdateReview,
     handleEditReviewModal,
     editReviewModalIsOpen,
-    setEditReviewModalIsOpen
+    setEditReviewModalIsOpen,
+    deleteModalIsOpen,
+    handleDeleteReview,
+    handleDeleteReviewModal,
+    setDeleteModalIsOpen
   };
 }
