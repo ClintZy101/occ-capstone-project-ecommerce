@@ -32,9 +32,9 @@ export default function AccountSection() {
 
   return (
     <div>
-      <div className="bg-gray-100 p-5 text-customBrown-darkest">
-        <h1 className="mb-5">Account</h1>
-        <div className="grid gap-5 lg:flex lg:justify-around mx-20">
+      <div className="bg-gray-100  text-customBrown-darkest">
+        <h1 className="font-semibold text-xl mb-5 text-customBrown-darkest">Account</h1>
+        <div className="grid gap-5 lg:flex lg:justify-around lg:mx-20">
           {/* Profile Image */}
           <div className="flex space-x-10 items-center">
             <div className="w-20 h-20 rounded-full bg-gray-200 grid place-items-center cursor-pointer" >

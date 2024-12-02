@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
-import { LOCALHOST } from "../api/api-url";
+import { API_URL, LOCALHOST } from "../api/api-url";
 
 export default function useReview() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +14,6 @@ export default function useReview() {
   const [editReviewModalIsOpen, setEditReviewModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
 
-  // const localhost = "http://localhost:5555/api/reviews";
-  const API_URL = "https://occ-capstone-proj-backend-3.onrender.com"
 
   const fetchReviews = async () => {
     setIsLoading(true);
