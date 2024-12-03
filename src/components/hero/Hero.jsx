@@ -14,7 +14,7 @@ export default function Hero() {
             Top-quality gadgets designed to elevate your lifestyle
           </p> */}
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-10">
         <HeroCTA text="Shop Now" Icon={IoIosArrowRoundForward} />
         </div>
         

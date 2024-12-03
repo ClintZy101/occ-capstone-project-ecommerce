@@ -17,6 +17,7 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import { AnimatePresence, motion} from "framer-motion";
 import UserAccount from "./pages/UserAccount";
 import Footer from "./components/footer/Footer";
+import ContactSupport from "./components/contact-support/ContactSupport";
 
 
 function App() {
@@ -123,6 +124,20 @@ function App() {
                 transition={{ duration: 0.5 }}
               >
                 <ContactUs />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/contactus/support"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <ContactSupport />
               </motion.div>
             }
           />

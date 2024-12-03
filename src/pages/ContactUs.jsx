@@ -1,5 +1,6 @@
 import React from "react";
 import { FiPhone } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function ContactUs() {
   return (
@@ -20,9 +21,11 @@ export default function ContactUs() {
               Chat with our sales team to discover how our product can work best
               for you.
             </p>
-            <p className="flex items-center justify-center cursor-pointer hover:font-semibold">
+            <p className="flex items-center justify-center cursor-pointer hover:font-semibold space-x-2">
               <FiPhone />
-              123-456
+              <a href="tel:09277712210" className="text-customBrown-darkest">
+                0927-7712-210
+              </a>
             </p>
           </div>
           <div className="bg-customBrown-light w-[400px] h-[200px] p-5 text-center grid gap-2 rounded md:-mt-24">
@@ -31,9 +34,11 @@ export default function ContactUs() {
               We are waiting to help you and your team - so don't hesitate to
               reach out!
             </p>
-            <button className="bg-customBrown-darkest rounded-md text-white hover:bg-customBrown-dark">
-              Contact Support
-            </button>
+            <Link to={"/contactus/support"}>
+              <button className="bg-customBrown-darkest rounded-md text-white hover:bg-customBrown-dark py-2 w-full">
+                Contact Support
+              </button>
+            </Link>
           </div>
         </div>
       </div>
