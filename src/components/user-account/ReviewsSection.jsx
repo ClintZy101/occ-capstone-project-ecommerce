@@ -14,7 +14,8 @@ export default function ReviewsSection() {
     deleteModalIsOpen,
     handleDeleteReview,
     handleDeleteReviewModal,
-    setDeleteModalIsOpen
+    setDeleteModalIsOpen,
+    isLoading
   } = useReview();
 
   // console.log(fetchedReviewsData);
@@ -28,7 +29,7 @@ export default function ReviewsSection() {
   return (
     <div>
       <h2 className="font-semibold text-xl mb-5 text-customBrown-darkest">My Reviews</h2>
-
+      {isLoading && <p>Loading...</p>}
       <EditReviewModal
         isOpen={editReviewModalIsOpen}
         handleClose={() => setEditReviewModalIsOpen((prevState) => !prevState)}
