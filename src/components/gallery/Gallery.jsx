@@ -13,12 +13,12 @@ export default function Gallery({ products, bgColor, category }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);  // Trigger animation when section enters the viewport
+          setInView(true);  
         } else {
           // setInView(false);  // Optionally reset if you want it to animate again when it leaves
         }
       },
-      { threshold: 0.2 }  // Adjust this threshold as needed (e.g., 0.2 means 20% of the element must be visible)
+      { threshold: 0.05 }  // Adjust this threshold as needed (e.g., 0.2 means 20% of the element must be visible)
     );
 
     if (sectionRef.current) {

@@ -37,8 +37,8 @@ export default function Checkout() {
   } = useCheckout();
 
 
-  console.log(checkoutSummary)
-  console.log(errorInHadleCheckout)
+  // console.log(checkoutSummary)
+  // console.log(errorInHadleCheckout)
   return (
     <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest font-thin">
       <ReviewOrder
