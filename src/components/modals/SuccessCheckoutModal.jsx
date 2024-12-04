@@ -57,7 +57,7 @@ export default function SuccessCheckoutModal({ checkoutSummary }) {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           {/* Modal Content */}
-          <div className="bg-white w-[500px] h-[350px] rounded-md shadow-lg relative p-10">
+          <div className="bg-white w-[500px] min-h-[300px] rounded-md shadow-lg relative p-10">
             <h2 className="text-lg font-semibold mb-4 text-center">
               {checkoutSummary.success.message}
             </h2>

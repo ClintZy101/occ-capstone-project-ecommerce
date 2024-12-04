@@ -5,6 +5,8 @@ import useCheckout from "../utils/useCheckout";
 import FormikAddress from "../components/checkout/FormikAddress";
 import ConfirmedAddress from "../components/checkout/ConfirmedAddress";
 import SuccessCheckoutModal from "../components/modals/SuccessCheckoutModal";
+import ErrorCheckoutModal from "../components/modals/ErrorCheckout";
+import Loader from "../components/loader/Loader";
 
 export default function Checkout() {
   const {
@@ -30,12 +32,13 @@ export default function Checkout() {
     formValue,
     paymentMethod,
     setPaymentMethod,
-    errors,
-    setErrors,
+    errorInHadleCheckout,
+    isLoading
   } = useCheckout();
 
 
   console.log(checkoutSummary)
+  console.log(errorInHadleCheckout)
   return (
     <div className="grid gap-5 grid-cols-1 lg:grid-cols-3 p-5 text-customBrown-darkest font-thin">
       <ReviewOrder
@@ -64,7 +67,10 @@ export default function Checkout() {
         setPaymentMethod={setPaymentMethod}
         handleCheckout={handleCheckout}
       />
+      <ErrorCheckoutModal errorInCheckout={errorInHadleCheckout} />
       <SuccessCheckoutModal checkoutSummary={checkoutSummary}/>
+      <Loader isLoading={isLoading} />
+
       <div></div>
     </div>
   );

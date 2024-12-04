@@ -15,6 +15,7 @@ export default function useCheckout() {
     success: false,
     data: {},
   });
+  const [errorInHadleCheckout, setErrorInHanldeCheckout] = useState({success: null, message:"" });
 
   const [checkoutSummary, setCheckoutSummary] = useState({});
 
@@ -159,8 +160,6 @@ export default function useCheckout() {
     });
   };
 
-
-
   const handleCheckout = async () => {
     setIsLoading(true);
 
@@ -174,47 +173,49 @@ export default function useCheckout() {
 
       const idToken = await user.getIdToken(); // Get Firebase auth token
 
-
-      await axios.post(
-        `${API_URL}/api/checkout` || "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
-        {
-          user_email: user.email,
-          items: cartItems.map((item) => ({
-            item_id: item.id,
-            item_name: item.name,
-            quantity: item.quantity,
-            price: item.price,
-            image:item.img_src,
-          })),
+      if (addressStatus.success === true && paymentMethod) {
+        await axios.post(
+          `${API_URL}/api/checkout` || "http://localhost:5555/api/checkout", // Replace with your actual backend endpoint
+          {
+            user_email: user.email,
+            items: cartItems.map((item) => ({
+              item_id: item.id,
+              item_name: item.name,
+              quantity: item.quantity,
+              price: item.price,
+              image: item.img_src,
+            })),
+            total,
+            shippingFee,
+            addressStatus,
+            paymentMethod,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+        );
+        setCheckoutSummary({
+          cartItems,
           total,
           shippingFee,
           addressStatus,
           paymentMethod,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
-      );
+          success: { status: true, message: "Checkout Success! Here is your summary: " },
+        });
+        // alert("Checkout successful!");
+      } else if(addressStatus.success === false || paymentMethod === ""){
+        setErrorInHanldeCheckout({success:false, message: 'Please make sure to Confirm Address and choose a Payment Method.'})
+      }
 
-      console.log('cartItems: ', cartItems)
-
-      // setCheckoutSummary({
-      //   ...response.data,
-      //   success: { status: true, message: "Here is your checkout summary!" },
-      // });
-
-      setCheckoutSummary({
-        cartItems,
-        total,
-        shippingFee,
-        addressStatus,
-        paymentMethod,
-        success: { status: true, message: "Here is your checkout summary: " },
-      });
-
-      alert("Checkout successful!");
+      console.log("cartItems: ", cartItems);
+      console.log('checkout error',errorInHadleCheckout)
+      // else if(addressStatus.success === false){
+      //   setErrorInHanldeCheckout({ success: false, message: 'Please Make sure to fill all necessary fields and confirm Address.' });
+      // } else if(paymentMethod === ""){
+      //   setErrorInHanldeCheckout({success:false, message:'Please choose a Payment Method.'})
+      // } 
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
@@ -222,6 +223,7 @@ export default function useCheckout() {
       setIsLoading(false);
     }
   };
+
 
   useEffect(() => {
     if (getTotalPrice() > freeShippingThreshhold) {
@@ -252,5 +254,7 @@ export default function useCheckout() {
     errors,
     setErrors,
     saveAddressToLocalStorage,
+    errorInHadleCheckout,
+    isLoading
   };
 }
