@@ -63,7 +63,7 @@ const CookieSection = () => {
         }`}
       >
         <Tilt
-          options={{ max: 25, speed: 10 }}
+          options={{ max: 25, speed: 10, touch:true }}
           className="bg-white shadow-lg rounded-lg overflow-hidden"
         >
           <img
