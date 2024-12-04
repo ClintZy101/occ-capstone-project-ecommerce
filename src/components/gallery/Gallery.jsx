@@ -15,7 +15,7 @@ export default function Gallery({ products, bgColor, category }) {
         if (entry.isIntersecting) {
           setInView(true);  // Trigger animation when section enters the viewport
         } else {
-          setInView(false);  // Optionally reset if you want it to animate again when it leaves
+          // setInView(false);  // Optionally reset if you want it to animate again when it leaves
         }
       },
       { threshold: 0.2 }  // Adjust this threshold as needed (e.g., 0.2 means 20% of the element must be visible)
