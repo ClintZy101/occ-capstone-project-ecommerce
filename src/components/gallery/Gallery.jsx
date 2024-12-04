@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaPesoSign } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReviewStars from "../reviews/ReviewStars";
 
 export default function Gallery({ products, bgColor, category }) {
+  const [inView, setInView] = useState(false);  // Track if section is in view
+  const sectionRef = useRef(null);
+
+  // Set up Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);  // Trigger animation when section enters the viewport
+        } else {
+          setInView(false);  // Optionally reset if you want it to animate again when it leaves
+        }
+      },
+      { threshold: 0.2 }  // Adjust this threshold as needed (e.g., 0.2 means 20% of the element must be visible)
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -23,9 +50,10 @@ export default function Gallery({ products, bgColor, category }) {
 
   return (
     <motion.div
+      ref={sectionRef}  // Reference the section for intersection observer
       className="p-5 pb-20"
       initial="hidden"
-      animate="show"
+      animate={inView ? "show" : "hidden"}  // Trigger animation when in view
       variants={containerVariants}
     >
       <h1 className="text-customBrown-darkest text-2xl mb-5 font-bold">
