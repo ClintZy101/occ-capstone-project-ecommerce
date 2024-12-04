@@ -172,8 +172,6 @@ export default function useReview() {
   }, []);
 
   useEffect(() => {
-   
-
     if (user) {
       fetchReviews();
     }

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import useCartStore from "../store/useCartLocalStorage";
 import axios from "axios";
-import { getAuth } from "firebase/auth";
 import { API_URL } from "../api/api-url";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function useCheckout() {
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { getTotalPrice, cartItems } = useCartStore();
   const [additionalDeliveryFee, setAdditionalDeliveryFee] = useState(0);
@@ -16,19 +17,18 @@ export default function useCheckout() {
     data: {},
   });
   const [errorInHadleCheckout, setErrorInHanldeCheckout] = useState({success: null, message:"" });
-
   const [checkoutSummary, setCheckoutSummary] = useState({});
-
+  const [checkoutData, setCheckoutData] = useState(null);
   const total = (getTotalPrice() + shippingFee + additionalDeliveryFee).toFixed(
     2
   );
   const freeShippingThreshhold = 1000;
-
   const deliveryOptionsRef = {
     regular: useRef(null),
     fast: useRef(null),
     express: useRef(null),
   };
+
 
   const handleAdditionalDeliveryFee = (option) => {
     if (option === "regular") {
@@ -204,18 +204,16 @@ export default function useCheckout() {
           paymentMethod,
           success: { status: true, message: "Checkout Success! Here is your summary: " },
         });
-        // alert("Checkout successful!");
+
+        fetchCheckoutHistory();
+
       } else if(addressStatus.success === false || paymentMethod === ""){
         setErrorInHanldeCheckout({success:false, message: 'Please make sure to Confirm Address and choose a Payment Method.'})
       }
 
       console.log("cartItems: ", cartItems);
       console.log('checkout error',errorInHadleCheckout)
-      // else if(addressStatus.success === false){
-      //   setErrorInHanldeCheckout({ success: false, message: 'Please Make sure to fill all necessary fields and confirm Address.' });
-      // } else if(paymentMethod === ""){
-      //   setErrorInHanldeCheckout({success:false, message:'Please choose a Payment Method.'})
-      // } 
+   
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
@@ -223,7 +221,50 @@ export default function useCheckout() {
       setIsLoading(false);
     }
   };
+  
+  const fetchCheckoutHistory = async () => {
+    setIsLoading(true);
+    try {
+      if (!user) {
+        throw new Error("User not authenticated.");
+      }
+      const idToken = await user.getIdToken(); // Get the ID token from the authenticated user
+      const response = await axios.get(
+        `${API_URL}/api/checkout`, // Replace with your actual backend endpoint
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`, // Include the ID token in the Authorization header
+          },
+        }
+      );
+      setCheckoutData(response.data.data);
+    } catch (error) {
+      console.error("Failed to fetch checkout history:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+
+  useEffect(() => {
+    const auth = getAuth();
+    // Listen for changes in the authentication state
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser); // Set the authenticated user
+      } else {
+        setUser(null); // Clear the user state if not authenticated
+      }
+    });
+
+    return () => unsubscribe(); // Clean up the listener on component unmount
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      fetchCheckoutHistory();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (getTotalPrice() > freeShippingThreshhold) {
@@ -255,6 +296,8 @@ export default function useCheckout() {
     setErrors,
     saveAddressToLocalStorage,
     errorInHadleCheckout,
-    isLoading
+    isLoading,
+    setIsLoading,
+    checkoutData
   };
 }

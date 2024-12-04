@@ -11,15 +11,15 @@ import {
 
 // Listen for auth state changes
 export const useAuthListener = () => {
-const {setUser, setLoading} = useAuthStore();
+const {setUser, setIsLoading} = useAuthStore();
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setLoading(false);
+      setIsLoading(false);
     });
     return () => unsubscribe();
-  }, [setUser, setLoading]);
+  }, [setUser, setIsLoading]);
 };
 
 // Signup Function
