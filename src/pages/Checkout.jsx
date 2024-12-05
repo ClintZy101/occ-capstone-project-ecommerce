@@ -45,7 +45,7 @@ export default function Checkout() {
       {user && cartItems.length === 0 && (
         <div className="w-screen h-screen bg-gray-100 pt-20 p-10">
           <h1 className="font-bold mx-auto text-center text-customBrown-darkest text-xl ">
-            Checkout Cart is Empty. Please Add Products to Cart for Checkout
+            Cart is Empty. Please Add Products to Cart for Checkout.
           </h1>
         </div>
       )}
