@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
-import { handleLogin, handleSignup } from "../../utils/useAuthHook";
+import { handleSignup } from "../../utils/useAuthHook";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -10,22 +10,48 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password === formData.confirmPassword) {
-      handleSignup(formData.email, formData.password);
+  const validateForm = () => {
+    if (!formData.email) {
+      return "Email is required.";
     }
-    handleLogin(formData.email, formData.password)
-    navigate("/");
-    console.log(formData)
-  
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      return "Please enter a valid email address.";
+    }
+    if (!formData.password) {
+      return "Password is required.";
+    }
+    if (formData.password.length < 6) {
+      return "Password must be at least 6 characters long.";
+    }
+    if (formData.password !== formData.confirmPassword) {
+      return "Passwords do not match.";
+    }
+    return null; // No errors
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    try {
+      setError(null);
+      await handleSignup(formData.email, formData.password);
+      navigate("/");
+    } catch (err) {
+      setError("Failed to sign up. Please try again.");
+    }
   };
 
   return (
@@ -34,6 +60,9 @@ const Signup = () => {
       className="bg-white p-6 rounded shadow-md mx-auto"
     >
       <h2 className="text-2xl font-bold mb-4">Signup</h2>
+
+      {error && <div className="text-red-500 mb-4">{error}</div>}
+
       <Input
         label="Email"
         type="email"
