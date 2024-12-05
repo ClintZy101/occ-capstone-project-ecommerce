@@ -1,13 +1,17 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from  "../../../firebase"
+import { useNavigate } from "react-router-dom";
 
 const GoogleSignInButton = () => {
+  const navigate = useNavigate();
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       console.log("Google Sign-In successful!", user);
-      // Handle user info (e.g., save to state or database)
+      if(user) {
+        navigate('/')
+      }
     } catch (error) {
       console.error("Error with Google Sign-In:", error);
     }
