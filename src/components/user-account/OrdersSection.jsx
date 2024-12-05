@@ -4,27 +4,28 @@ import OrdersByDateAndTime from "./order-section/OrdersByDateAndTime";
 import ReviewModal from "../modals/ReviewModal";
 import useReview from "../../utils/useReview";
 import { API_URL } from "../../api/api-url";
-import useCheckout from '../../utils/useCheckout'
-import Loader from '../../components/loader/Loader'
+import useCheckout from "../../utils/useCheckout";
+import Loader from "../../components/loader/Loader";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function OrdersSection() {
-
+  const {user, token} = useAuthStore()
   const {
     productForReview,
-    user,
     reviewModalIsOpen,
     setReviewModalIsOpen,
     handleProductForReview,
     handleSubmitReview,
   } = useReview();
 
-  const {checkoutData, isLoading} = useCheckout()
+  const { checkoutData, isLoading } = useCheckout();
 
   const sortedDataToLatest = checkoutData?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-
+  // console.log("checkoutData", checkoutData);
+  // console.log('user and token', user, token)
   return (
     <div>
       <ReviewModal
@@ -33,7 +34,8 @@ export default function OrdersSection() {
         productForReview={productForReview}
         handleSubmit={handleSubmitReview}
       />
-      {isLoading && <Loader />}
+      <Loader isLoading={isLoading} />
+
       <h2 className="font-semibold text-xl mb-5 text-customBrown-darkest">
         Order History
       </h2>
@@ -48,7 +50,10 @@ export default function OrdersSection() {
           ))}
         </div>
       ) : (
-        <p>No orders found. Login to see your Order History.</p> // Handle empty state
+        <>
+          <p>No orders found.</p>
+          {!user && <p>Login to see Order History</p>}
+        </> 
       )}
     </div>
   );

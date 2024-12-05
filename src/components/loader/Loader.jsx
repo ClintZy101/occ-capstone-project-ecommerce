@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Loader = ({ isLoading }) => {
-  if (!isLoading) return null; // Don't render the loader if not loading
+  if (!isLoading) return null; 
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-gray-900 bg-opacity-50 z-50">

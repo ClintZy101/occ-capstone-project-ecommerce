@@ -19,9 +19,9 @@ const saveToLocalStorage = (cartItems) => {
   }
 };
 
-// Zustand store
+
 const useCartStore = create((set, get) => ({
-  cartItems: loadFromLocalStorage(), // Load initial state from localStorage
+  cartItems: loadFromLocalStorage(), 
   // Add item to cart
   addToCart: (newItem) =>
     set((state) => {

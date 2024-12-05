@@ -32,7 +32,7 @@ export default function AccountSection() {
 
   return (
     <div>
-      <div className="bg-gray-100  text-customBrown-darkest">
+      {user ?  <div className="bg-gray-100  text-customBrown-darkest">
         <h1 className="font-semibold text-xl mb-5 text-customBrown-darkest">Account</h1>
         <div className="grid gap-5 lg:flex lg:justify-around lg:mx-20">
           {/* Profile Image */}
@@ -133,7 +133,12 @@ export default function AccountSection() {
             </div>
           </form>
         </div>
-      </div>
+      </div>  :
+      <>
+      <p className="text-gray-900">Login to see Account Details.</p>
+      </>
+    }
+     
     </div>
   );
 }

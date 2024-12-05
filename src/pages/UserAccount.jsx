@@ -8,7 +8,6 @@ import ReviewsSection from "../components/user-account/ReviewsSection";
 import OrdersSection from "../components/user-account/OrdersSection";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-
 export default function UserAccount() {
   const [userDisplayName, setUserDisplayName] = useState("username");
   const [userId, setUserId] = useState("");
@@ -43,16 +42,21 @@ export default function UserAccount() {
       <div className=" min-w-[200px]">
         <Sidebar user={user} />
       </div>
-
-      <div className="md:w-4/5 bg-gray-100 p-5">
-        <Routes>
-          <Route path="/" element={<Navigate to={`${userId}`} />} />{" "}
-          {/* Default */}
-          <Route path={`${userId}`} element={<AccountSection />} />
-          <Route path="myreviews" element={<ReviewsSection />} />
-          <Route path="myorders" element={<OrdersSection />} />
-        </Routes>
-      </div>   
+      {user ? (
+        <div className="md:w-4/5 bg-gray-100 p-5">
+          <Routes>
+            <Route path="/" element={<Navigate to={`${userId}`} />} />{" "}
+            {/* Default */}
+            <Route path={`${userId}`} element={<AccountSection />} />
+            <Route path="myreviews" element={<ReviewsSection />} />
+            <Route path="myorders" element={<OrdersSection />} />
+          </Routes>
+        </div>
+      ) : (
+        <div className="md:w-4/5 bg-gray-100 p-5">
+          <p>Login to see Account Details</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -18,6 +18,7 @@ import { AnimatePresence, motion} from "framer-motion";
 import UserAccount from "./pages/UserAccount";
 import Footer from "./components/footer/Footer";
 import ContactSupport from "./components/contact-support/ContactSupport";
+import LoginTest from "./components/login/LoginTest";
 
 
 function App() {
@@ -68,6 +69,20 @@ function App() {
                 transition={{ duration: 0.5 }}
               >
                 <Home />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/logintest"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <LoginTest />
               </motion.div>
             }
           />

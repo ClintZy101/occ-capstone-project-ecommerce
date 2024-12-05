@@ -3,8 +3,10 @@ import useReview from "../../utils/useReview";
 import EditReviewModal from "../modals/EditReviewModal";
 import DeleteReviewModal from "../modals/DeleteReviewModal";
 import Loader from "../loader/Loader";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function ReviewsSection() {
+  const {user} = useAuthStore();
   const {
     handleEditReviewModal,
     handleSubmitReview,
@@ -21,6 +23,7 @@ export default function ReviewsSection() {
 
   // console.log(fetchedReviewsData);
   // console.log(reviewData)
+  console.log(user)
 
   const sortedDataToLatest = fetchedReviewsData?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -43,7 +46,8 @@ export default function ReviewsSection() {
         data={reviewData}
         handleSubmit={handleDeleteReview}
       />
-       {isLoading && <Loader />}
+      <Loader isLoading={isLoading} />
+      
       {sortedDataToLatest.length > 0 ? (
         <div className="grid gap-5">
           {sortedDataToLatest?.map((item, i) => {
@@ -82,7 +86,10 @@ export default function ReviewsSection() {
           })}
         </div>
       ) : (
-        <p>No orders found. Login to see your Reviews.</p>
+        <>
+          <p>No orders found.</p>
+          {user === null && <p>Login to see Order History</p>}
+        </>
       )}
     </div>
   );

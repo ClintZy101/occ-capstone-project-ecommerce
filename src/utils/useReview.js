@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 import { API_URL, LOCALHOST } from "../api/api-url";
+import { useNavigate } from "react-router-dom";
 
 export default function useReview() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +15,7 @@ export default function useReview() {
   const [editReviewModalIsOpen, setEditReviewModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
 
+  const navigate = useNavigate();
 
   const fetchReviews = async () => {
     setIsLoading(true);
@@ -120,9 +122,10 @@ export default function useReview() {
         },
       }
     );
-    console.log("review submitted as create review", API_URL);
+
+    fetchReviews();   
+    navigate('/account/myreviews')
     setReviewModalIsOpen((prevState) => !prevState);
-    fetchReviews();
   };
 
   const handleSubmitReview = async (review, rating) => {
@@ -137,7 +140,6 @@ export default function useReview() {
       }
 
       const idToken = await user.getIdToken(); // Get Firebase auth token
-
       if (editReviewModalIsOpen) {
         handleUpdateReview(idToken, review);
       } else {

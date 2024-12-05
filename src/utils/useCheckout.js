@@ -7,7 +7,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default function useCheckout() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { getTotalPrice, cartItems } = useCartStore();
+  const { getTotalPrice, cartItems, clearCart } = useCartStore();
   const [additionalDeliveryFee, setAdditionalDeliveryFee] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -206,7 +206,7 @@ export default function useCheckout() {
         });
 
         fetchCheckoutHistory();
-
+        clearCart();
       } else if(addressStatus.success === false || paymentMethod === ""){
         setErrorInHanldeCheckout({success:false, message: 'Please make sure to Confirm Address and choose a Payment Method.'})
       }
@@ -228,7 +228,7 @@ export default function useCheckout() {
       if (!user) {
         throw new Error("User not authenticated.");
       }
-      const idToken = await user.getIdToken(); // Get the ID token from the authenticated user
+      const idToken = await user.getIdToken(); 
       const response = await axios.get(
         `${API_URL}/api/checkout`, // Replace with your actual backend endpoint
         {
@@ -238,6 +238,7 @@ export default function useCheckout() {
         }
       );
       setCheckoutData(response.data.data);
+      console.log('checkout success')
     } catch (error) {
       console.error("Failed to fetch checkout history:", error);
     } finally {
