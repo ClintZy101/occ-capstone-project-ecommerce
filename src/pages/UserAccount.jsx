@@ -45,10 +45,10 @@ export default function UserAccount() {
       {user ? (
         <div className="md:w-4/5 bg-gray-100 p-5">
           <Routes>
-            <Route path="/" element={<Navigate to={`${userId}`} />} />{" "}
+            {/* <Route path="/" element={<Navigate to={`${userId}`} />} />{" "} */}
             {/* Default */}
-            <Route path={`${userId}`} element={<AccountSection />} />
-            <Route path="myreviews" element={<ReviewsSection />} />
+            {/* <Route path={`${userId}`} element={<AccountSection />} /> */}
+            <Route path="myreviews"  element={<ReviewsSection />} />
             <Route path="myorders" element={<OrdersSection />} />
           </Routes>
         </div>

@@ -12,7 +12,7 @@ export default function AccountDropdown({
     const navigate = useNavigate();
 
     const handleNavigate = (id) => {
-        navigate(`/account/${id}`);
+        navigate(`/account/myorders`);
         setAccountDropdownIsActive(!accountDropdownIsActive)
     }
   return (
@@ -38,7 +38,7 @@ export default function AccountDropdown({
               tabIndex="0"
               className="cursor-pointer border border-customBrown text-center py-2 hover:bg-customBrown rounded"
             >
-              My Account
+              My Orders & Reviews
             </p>
 
           <span

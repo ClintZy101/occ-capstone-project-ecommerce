@@ -45,16 +45,16 @@ export default function Sidebar({user}) {
 
 
   return (
-    <nav className="lg:grid lg:gap-3 mb-5 flex w-full justify-between lg:w-max ">
+    <nav className="lg:grid lg:gap-3 mb-5 flex w-full justify-around lg:w-max ">
     
-      <NavLink
+      {/* <NavLink
         to={`${user?.uid}`}
         className={({ isActive }) =>
           isActive ? "text-customBrown font-bold" : "text-gray-700"
         }
       >
         My Account
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to="myorders"
         className={({ isActive }) =>

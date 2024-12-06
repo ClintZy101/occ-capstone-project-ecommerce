@@ -136,11 +136,11 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
               Checkout
             </span>
           </Link>
-          <Link to={"/account/"}>
+          <Link to={"/account/myorders"}>
             <span
               className={` px-5 ${isActive === "/account" && "font-bold"}`}
             >
-              Account
+              Orders & Reviews
             </span>
           </Link>
         </div>
