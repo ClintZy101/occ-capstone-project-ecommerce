@@ -14,12 +14,12 @@ import CartModal from "./components/modals/CartModal";
 import useCartModal from "./store/useCartModal";
 import ContactUs from "./pages/ContactUs";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
-import { AnimatePresence, motion} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import UserAccount from "./pages/UserAccount";
 import Footer from "./components/footer/Footer";
 import ContactSupport from "./components/contact-support/ContactSupport";
 import LoginTest from "./components/login/LoginTest";
-
+import StripeCheckout from "./pages/StripeCheckout";
 
 function App() {
   const { bannerIsHidden } = scrollHook();
@@ -33,7 +33,7 @@ function App() {
 
   const pageVariants = {
     initial: { opacity: 0, y: -50 },
-    animate: { opacity: 1, y: 0, },
+    animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 50 },
   };
   return (
@@ -170,7 +170,22 @@ function App() {
               </motion.div>
             }
           />
-  {/* path="/account/:id" */}
+          <Route
+            path="/stripe-checkout"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <StripeCheckout />
+              </motion.div>
+            }
+          />
+
+          {/* path="/account/:id" */}
           <Route
             path="/account/*"
             element={

@@ -17,8 +17,10 @@ export default function SuccessCheckoutModal({ checkoutSummary }) {
   const navigate = useNavigate();
 
   const handleClose = () => {
+    let total = Number(checkoutSummary.total)
+    localStorage.setItem("total", total);
     setIsOpen(false);
-    navigate(`/account/myorders`)
+    navigate(`/stripe-checkout`)
   };
 
   function getDetailedAddress(address) {
@@ -52,6 +54,7 @@ export default function SuccessCheckoutModal({ checkoutSummary }) {
     checkoutSummary?.addressStatus?.data
   );
 
+  console.log(checkoutSummary)
   return (
     <>
       {isOpen && (

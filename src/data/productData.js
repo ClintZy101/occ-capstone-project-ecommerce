@@ -4,7 +4,7 @@ export const cookies = [
     name: "Combo Box",
     img_src:
       "https://static.wixstatic.com/media/c837a6_b84460d516464a4a9e3b53bc9a4025f0~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_b84460d516464a4a9e3b53bc9a4025f0~mv2.jpeg",
-    price: 32,
+    price: 135,
     categories: ["comboboxes", "crumblite"],
     stars: 5,
     review_count: 1020,
@@ -15,7 +15,7 @@ export const cookies = [
     name: "The Dream Combo",
     img_src:
       "https://static.wixstatic.com/media/c837a6_a908d90c8dee4f94901bdd081a885101~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_a908d90c8dee4f94901bdd081a885101~mv2.jpeg",
-    price: 32,
+    price: 150,
     categories: ["comboboxes", "bestseller", "crumblite"],
     stars: 4,
     review_count: 2000,
@@ -26,7 +26,7 @@ export const cookies = [
     name: "Red Velvet",
     img_src:
       "https://static.wixstatic.com/media/c837a6_1747c76e203a47bf81ed96da6fe6d9ef~mv2.jpg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_1747c76e203a47bf81ed96da6fe6d9ef~mv2.jpg",
-    price: 32,
+    price: 145,
     categories: ["bestseller", "crumblite"],
     stars: 4,
     review_count: 3000,
@@ -37,7 +37,7 @@ export const cookies = [
     name: "Lemon Meringue",
     img_src:
       "https://static.wixstatic.com/media/c837a6_79bed828b1dd47bda3fa43cdc2920f0d~mv2.jpg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_79bed828b1dd47bda3fa43cdc2920f0d~mv2.jpg",
-    price: 32,
+    price: 160,
     categories: ["crumblite"],
     stars: 5,
     review_count: 5985,
@@ -48,7 +48,7 @@ export const cookies = [
     name: "Pistachio Mirage",
     img_src:
       "https://static.wixstatic.com/media/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_00e3407ad707421e91f915620bb3699d~mv2.jpeg",
-    price: 32,
+    price: 170,
     categories: ["crumblite"],
     stars: 4,
     review_count: 1500,
@@ -59,7 +59,7 @@ export const cookies = [
     name: "Macadamia Heaven",
     img_src:
       "https://static.wixstatic.com/media/c837a6_ea9e317261f5488b89dcf745a62149b3~mv2.jpg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_ea9e317261f5488b89dcf745a62149b3~mv2.jpg",
-    price: 32,
+    price: 175,
     categories: ["bestseller", "crumblite"],
     stars: 5,
     review_count: 3000,
@@ -70,7 +70,7 @@ export const cookies = [
     name: "Upside Downs",
     img_src:
       "https://static.wixstatic.com/media/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_d6d61c9852af4b84ad1b2d92c9556076~mv2.jpeg",
-    price: 32,
+    price: 180,
     categories: ["crumblite"],
     stars: 4,
     review_count: 4300,
@@ -81,7 +81,7 @@ export const cookies = [
     name: "The Classics",
     img_src:
       "https://static.wixstatic.com/media/c837a6_010a6939ff924576815c13650ba50559~mv2.jpeg/v1/fill/w_908,h_908,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_010a6939ff924576815c13650ba50559~mv2.jpeg",
-    price: 32,
+    price: 120,
     categories: ["bestseller", "crumblite"],
     stars: 5,
     review_count: 7799,

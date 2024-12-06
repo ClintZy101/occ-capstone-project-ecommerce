@@ -186,7 +186,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
             </div>
           ) : (
             <Link to={"/login"}>
-              <span className="cursor-pointer bg-customBrown text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300">
+              <span className="cursor-pointer bg-customBrown hover:bg-customBrown-dark text-white px-5 py-1 rounded-full font-semibold hover:scale-105 duration-300">
                 Login
               </span>
             </Link>

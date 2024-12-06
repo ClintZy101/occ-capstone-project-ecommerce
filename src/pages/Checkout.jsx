@@ -9,6 +9,8 @@ import ErrorCheckoutModal from "../components/modals/ErrorCheckout";
 import Loader from "../components/loader/Loader";
 import { useAuthStore } from "../store/useAuthStore";
 
+
+
 export default function Checkout() {
   const { user } = useAuthStore();
   const {
@@ -38,7 +40,7 @@ export default function Checkout() {
     isLoading,
   } = useCheckout();
 
-  // console.log(checkoutSummary)
+  console.log(checkoutSummary)
   // console.log(errorInHadleCheckout)
   return (
     <>
