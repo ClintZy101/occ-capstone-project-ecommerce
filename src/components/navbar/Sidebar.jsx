@@ -8,7 +8,7 @@ export default function Sidebar({ sidebarIsShown, handleSidebar }) {
     { name: "Products", link: "/products" },
     { name: "Contact Us", link: "/contactus" },
     { name: "Checkout", link: "/checkout" },
-    { name: "Account", link: "/account" },
+    { name: "My Orders & Reviews", link: "/account/myorders" },
   ];
 
   const navigate = useNavigate();
