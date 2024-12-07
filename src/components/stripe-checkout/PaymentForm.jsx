@@ -72,7 +72,7 @@ const PaymentFormStripe = () => {
           <label className="block text-sm font-medium text-gray-600 mb-2">
             Amount (PHP)
           </label>
-          <p className="text-xl">${amountTotal.toFixed(2)}</p>
+          <p className="text-xl">Php{amountTotal.toFixed(2)}</p>
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600 mb-2 border-b">
