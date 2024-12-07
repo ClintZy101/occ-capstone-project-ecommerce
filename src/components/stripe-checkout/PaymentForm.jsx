@@ -70,7 +70,7 @@ const PaymentFormStripe = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-600 mb-2">
-            Amount (USD)
+            Amount (PHP)
           </label>
           <p className="text-xl">${amountTotal.toFixed(2)}</p>
         </div>
@@ -98,7 +98,7 @@ const PaymentFormStripe = () => {
           disabled={isProcessing || !stripe || amountTotal <= 0}
           className="w-full py-3 bg-customBrown text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
         >
-          {isProcessing ? "Processing..." : `Pay $${amountTotal.toFixed(2)}`}
+          {isProcessing ? "Processing..." : `Pay Php${amountTotal.toFixed(2)}`}
         </button>
       </form>
     </div>
