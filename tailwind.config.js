@@ -13,6 +13,7 @@ export default {
           dark: '#B99976',
           darkest: '#664229',
         },
+        customBackground: '#F6F4E8'
       },
       animation: {
         "fade-in-up": "fade-in-up 1s ease-out",

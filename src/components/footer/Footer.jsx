@@ -1,19 +1,46 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <div className='p-5 flex space-x-20 bg-customBrown-light text-customBrown-darkest justify-center items-center h-[300px] '>
-        <div className='grid gap-5'>
-        <h2 className='font-bold text-xl'>Product Info</h2>
-        <p>About Crumblite</p>
-        <p>Careers</p>
+    <footer className="footer ">
+      <div className="foot-section grid grid-cols-1 gap-5 lg:flex">
+        {/* Address Section */}
+        <div className="footer-section">
+          <h3 className="font-bold">ADDRESS:</h3>
+          <p>123 San Juan Street</p>
+          <p>Negros Oriental, Philippines</p>
+          <p>Tel: 123-456-7890</p>
         </div>
-        <div className='grid gap-5'>
-            <h2 className='font-bold text-xl'>Help & Support</h2>
-            <p>Shipping Info</p>
-            <p>Returns</p>
+        {/* Opening Hours Section */}
+        <div className="footer-section">
+          <h3 className="font-bold">OPENING HOURS:</h3>
+          <p>Mon - Fri: 7am - 10pm</p>
+          <p>Saturday: 8am - 10pm</p>
+          <p>Sunday: 8am - 11pm</p>
         </div>
-       
-    </div>
-  )
-}
+        {/* Logo and Contact Button */}
+        <div className="footer-section text-center">
+          <img
+            src="logo.png"
+            alt="Crumbly Cookies Logo"
+            className="footer-logo mx-auto"
+          />
+          <Link to={'/contactus'}>
+          <button className="contact-button mt-3">Contact Us</button>
+          </Link>
+        </div>
+      </div>
+      {/* Copyright Section */}
+      <div className="footer-bottom">
+        <p>© 2024 Crumbly Cookies – All Rights Reserved.</p>
+        <p>
+          <a href="/privacy-policy" className="footer-link">
+            Privacy Policy
+          </a>
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

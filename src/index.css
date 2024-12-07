@@ -2,7 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Open Sans Variable', sans-serif;
-  user-select: none;
+@layer base {
+  body {
+    @apply font-sans select-none ;  /* Using Open Sans Variable and disabling text selection */
+  }
+}
+
+@layer components {
+  .footer {
+    @apply bg-[#F6F4E8] py-2 text-[#333] font-sans border-t border-t-customBrown-light mt-20;
+  }
+  .footer-section {
+    @apply  w-full grid place-items-center;
+  }
+  .foot-section {
+    @apply mt-5 w-full flex justify-center items-center ;
+  }
+  .footer-logo {
+    @apply w-[110px];
+  }
+  .contact-button {
+    @apply bg-[#4B2F0F] text-white px-4 py-2 rounded cursor-pointer;
+  }
+  .contact-button:hover {
+    @apply bg-[#5C3B16];
+  }
+  .footer-bottom {
+    @apply text-center mt-5 text-sm;
+  }
+  .footer-link {
+    @apply text-[#4B2F0F] no-underline;
+  }
+  .footer-link:hover {
+    @apply underline;
+  }
 }
