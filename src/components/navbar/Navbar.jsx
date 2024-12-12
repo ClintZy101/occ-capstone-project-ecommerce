@@ -151,7 +151,7 @@ export default function Navbar({ bannerIsHidden, handleSidebar }) {
             onClick={() => setCartModalIsOpen(true)}
           >
             <PiShoppingCartSimpleThin className="text-2xl" />
-            <span className="w-6 h-6 absolute -top-2 -right-3 bg-yellow-400 rounded-full grid place-items-center">
+            <span className="w-6 h-6 absolute -top-2 -right-3 bg-yellow-300 rounded-full grid place-items-center">
               <p>{totalQuantity}</p>
             </span>
           </span>
