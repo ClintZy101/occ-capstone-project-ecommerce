@@ -50,7 +50,7 @@ const PaymentFormStripe = () => {
         alert(`Payment failed: ${paymentResult.error.message}`);
       } else {
         alert("Payment successful!");
-        navigate("/");
+        navigate("/account/myorders");
         clearCart();
         cardElement.clear();
       }
